@@ -45,14 +45,6 @@
 
     <build>
         <plugins>
-			<plugin>
-                <groupId>org.mybatis.generator</groupId>
-                <artifactId>mybatis-generator-maven-plugin</artifactId>
-				<configuration>
-					<!--（逆向工程）配置文件位置-->
-					<configurationFile>GeneratorMapper.xml</configurationFile>
-				</configuration>
-            </plugin>
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
