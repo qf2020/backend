@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.citi.backend.dao.ClientMapper">
+
+    <insert id="insert" parameterType="com.citi.entity.Client" >
+        insert into citi.client (client_id,client_name,password)
+        values (#{id},#{name},#{password})
+    </insert>
+</mapper>
