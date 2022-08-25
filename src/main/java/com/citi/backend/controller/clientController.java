@@ -2,7 +2,8 @@ package com.citi.backend.controller;
 
 
 import com.citi.backend.service.ClientService;
-import com.citi.backend.service.ClientServiceImp;
+import com.citi.backend.service.impl.ClientServiceImpl;
+
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
@@ -12,7 +13,7 @@ import javax.annotation.Resource;
 
 public class clientController {
     @Resource
-    ClientService clientService=new ClientServiceImp();
+    ClientService clientService=new ClientServiceImpl();
 
     @GetMapping("/insert")
     @CrossOrigin

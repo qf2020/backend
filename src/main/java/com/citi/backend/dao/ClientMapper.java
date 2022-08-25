@@ -1,9 +1,17 @@
 package com.citi.backend.dao;
 
 import com.citi.backend.entity.Client;
-import org.springframework.stereotype.Repository;
 
-@Repository
 public interface ClientMapper {
-    int insert(Client record);
+    int deleteByPrimaryKey(String clientId);
+
+    int insert(Client row);
+
+    int insertSelective(Client row);
+
+    Client selectByPrimaryKey(String clientId);
+
+    int updateByPrimaryKeySelective(Client row);
+
+    int updateByPrimaryKey(Client row);
 }

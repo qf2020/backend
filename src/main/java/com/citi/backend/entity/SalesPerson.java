@@ -3,10 +3,12 @@ package com.citi.backend.entity;
 import java.io.Serializable;
 import java.util.Date;
 
-public class Client implements Serializable {
-    private String clientId;
+public class SalesPerson implements Serializable {
+    private Integer salesPersonId;
 
-    private String clientName;
+    private String jobNumber;
+
+    private String salesPersonName;
 
     private String password;
 
@@ -14,20 +16,28 @@ public class Client implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
-    public String getClientId() {
-        return clientId;
+    public Integer getSalesPersonId() {
+        return salesPersonId;
     }
 
-    public void setClientId(String clientId) {
-        this.clientId = clientId;
+    public void setSalesPersonId(Integer salesPersonId) {
+        this.salesPersonId = salesPersonId;
     }
 
-    public String getClientName() {
-        return clientName;
+    public String getJobNumber() {
+        return jobNumber;
     }
 
-    public void setClientName(String clientName) {
-        this.clientName = clientName;
+    public void setJobNumber(String jobNumber) {
+        this.jobNumber = jobNumber;
+    }
+
+    public String getSalesPersonName() {
+        return salesPersonName;
+    }
+
+    public void setSalesPersonName(String salesPersonName) {
+        this.salesPersonName = salesPersonName;
     }
 
     public String getPassword() {
@@ -52,8 +62,9 @@ public class Client implements Serializable {
         sb.append(getClass().getSimpleName());
         sb.append(" [");
         sb.append("Hash = ").append(hashCode());
-        sb.append(", clientId=").append(clientId);
-        sb.append(", clientName=").append(clientName);
+        sb.append(", salesPersonId=").append(salesPersonId);
+        sb.append(", jobNumber=").append(jobNumber);
+        sb.append(", salesPersonName=").append(salesPersonName);
         sb.append(", password=").append(password);
         sb.append(", registerTime=").append(registerTime);
         sb.append("]");
