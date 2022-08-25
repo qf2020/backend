@@ -10,7 +10,7 @@ import javax.annotation.Resource;
 @RestController
 @RequestMapping("/client")
 
-public class clientController {
+public class ClientController {
     @Resource
     ClientService clientService;
 
