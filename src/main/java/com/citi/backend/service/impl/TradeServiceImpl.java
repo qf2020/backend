@@ -5,6 +5,7 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
 
 import javax.annotation.Resource;
 
@@ -37,6 +38,18 @@ public class TradeServiceImpl implements TradeService {
         int startIndex = (currentPage - 1) * pageSize;
         List<Trade> tradesByTime = tradeMapper.selectByDateAndPage(sdf.format(dateFrom), sdf.format(dateTo), startIndex, pageSize);
         return tradesByTime;
+    }
+
+    @Override
+    public void buyStock(Map<String, Object> tradeInfo) {
+        Trade trade = new Trade();
+        Date date = new Date();
+        trade.setClientId((String)tradeInfo.get("clientId"));
+        trade.setStockId((String)tradeInfo.get("stockId"));
+        trade.setSize((Integer)tradeInfo.get("size"));
+        trade.setSalesPersonId((String)tradeInfo.get("salespersonId"));
+        trade.setTradeDate(date);
+        tradeMapper.insert(trade);
     }
     
 }
