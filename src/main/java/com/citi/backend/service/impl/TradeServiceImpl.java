@@ -1,6 +1,7 @@
 package com.citi.backend.service.impl;
 
 
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
@@ -27,7 +28,8 @@ public class TradeServiceImpl implements TradeService {
         calendar.setTime(dateNow);
         calendar.add(Calendar.DATE, -1);
         Date dateFrom = calendar.getTime();
-        List<Trade> tradesByTime = tradeMapper.selectByDate(dateFrom, dateNow);
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+        List<Trade> tradesByTime = tradeMapper.selectByDate(sdf.format(dateFrom), sdf.format(dateNow));
         return tradesByTime;
     }
     

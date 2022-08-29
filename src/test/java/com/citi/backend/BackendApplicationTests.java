@@ -20,9 +20,12 @@ class BackendApplicationTests {
         Calendar calendar = Calendar.getInstance();
         calendar.setTime(date);
         calendar.add(Calendar.DATE, -1);
+
+        
         System.out.println("=====================");
-        System.out.println(date);
-        System.out.println(calendar.getTime());
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+        System.out.println(sdf.format(date));
+        System.out.println(sdf.format(calendar.getTime()));
     }
 
 }

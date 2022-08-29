@@ -20,12 +20,7 @@
     delete from client
     where client_id = #{clientId,jdbcType=VARCHAR}
   </delete>
-  <insert id="insert" parameterType="com.citi.backend.entity.Client">
-    insert into client (client_id, client_name, password, 
-      register_time)
-    values (#{clientId,jdbcType=VARCHAR}, #{clientName,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}, 
-      #{registerTime,jdbcType=TIMESTAMP})
-  </insert>
+
   <insert id="insertSelective" parameterType="com.citi.backend.entity.Client">
     insert into client
     <trim prefix="(" suffix=")" suffixOverrides=",">

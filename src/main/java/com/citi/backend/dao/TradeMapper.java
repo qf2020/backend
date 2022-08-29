@@ -14,7 +14,7 @@ public interface TradeMapper {
 
     Trade selectByPrimaryKey(String tradeId);
 
-    List<Trade> selectByDate(Date startTime, Date endTime);
+    List<Trade> selectByDate(String startTime, String endTime);
 
     int updateByPrimaryKeySelective(Trade row);
 

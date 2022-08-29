@@ -7,6 +7,7 @@ import javax.annotation.Resource;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.citi.backend.entity.Trade;
 import com.citi.backend.enums.FrequencyEnum;
@@ -18,6 +19,7 @@ public class TradeController {
     TradeService tradeService;
 
     @GetMapping("/gettrade")
+    @ResponseBody
     @CrossOrigin
     public List<Trade> getTrade(String fre, int pageSize, int currentPage){
         List<Trade> trades = tradeService.getTrade(FrequencyEnum.valueOf("_" + fre), pageSize, currentPage);
