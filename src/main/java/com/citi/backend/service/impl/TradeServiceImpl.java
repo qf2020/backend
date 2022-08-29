@@ -24,12 +24,20 @@ public class TradeServiceImpl implements TradeService {
     @Override
     public List<Trade> getTrade(FrequencyEnum fre, int pageSize, int currentPage) {
         Date dateNow = new Date();
+
         Calendar calendar = Calendar.getInstance();
         calendar.setTime(dateNow);
         calendar.add(Calendar.DATE, +1);
         Date dateTo = calendar.getTime();
+
+        calendar.setTime(dateNow);
+        calendar.add(fre.getUnit(), fre.getDuration());
+        Date dateFrom = calendar.getTime();
+
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-        List<Trade> tradesByTime = tradeMapper.selectByDate(sdf.format(dateNow), sdf.format(dateTo));
+        System.out.println(sdf.format(dateFrom));
+        System.out.println(sdf.format(dateTo));
+        List<Trade> tradesByTime = tradeMapper.selectByDate(sdf.format(dateFrom), sdf.format(dateTo));
         return tradesByTime;
     }
     
