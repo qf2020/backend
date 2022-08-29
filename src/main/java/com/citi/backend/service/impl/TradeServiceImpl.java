@@ -26,10 +26,10 @@ public class TradeServiceImpl implements TradeService {
         Date dateNow = new Date();
         Calendar calendar = Calendar.getInstance();
         calendar.setTime(dateNow);
-        calendar.add(Calendar.DATE, -1);
-        Date dateFrom = calendar.getTime();
+        calendar.add(Calendar.DATE, +1);
+        Date dateTo = calendar.getTime();
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-        List<Trade> tradesByTime = tradeMapper.selectByDate(sdf.format(dateFrom), sdf.format(dateNow));
+        List<Trade> tradesByTime = tradeMapper.selectByDate(sdf.format(dateNow), sdf.format(dateTo));
         return tradesByTime;
     }
     

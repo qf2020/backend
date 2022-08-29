@@ -1,6 +1,5 @@
 package com.citi.backend.dao;
 
-import java.util.Date;
 import java.util.List;
 
 import com.citi.backend.entity.Trade;
