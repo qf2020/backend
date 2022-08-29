@@ -12,12 +12,24 @@
   <sql id="Base_Column_List">
     trade_statistic_id, description, total_buy, total_sell, statistic_date, update_time
   </sql>
+  <sql id="Base_Column1_List">
+     total_buy, total_sell, statistic_date
+  </sql>
+
   <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />
     from trade_statistic
     where trade_statistic_id = #{tradeStatisticId,jdbcType=VARCHAR}
   </select>
+
+  <select id="selectByDate" parameterType="java.lang.String" resultType="hashmap">
+    select
+    <include refid="Base_Column1_List" />
+    from trade_statistic
+    where statistic_date between #{startTime} and #{endTime}
+  </select>
+
   <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
     delete from trade_statistic
     where trade_statistic_id = #{tradeStatisticId,jdbcType=VARCHAR}
