@@ -7,11 +7,14 @@ import java.util.List;
 
 import javax.annotation.Resource;
 
+import org.springframework.stereotype.Service;
+
 import com.citi.backend.dao.TradeMapper;
 import com.citi.backend.entity.Trade;
 import com.citi.backend.enums.FrequencyEnum;
 import com.citi.backend.service.TradeService;
 
+@Service
 public class TradeServiceImpl implements TradeService {
 
     @Resource
