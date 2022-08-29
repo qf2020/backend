@@ -13,7 +13,7 @@ public interface TradeMapper {
 
     Trade selectByPrimaryKey(String tradeId);
 
-    List<Trade> selectByDateAndPage(String startTime, String endTime);
+    List<Trade> selectByDateAndPage(String startTime, String endTime, int startIndex, int pageSize);
 
     int updateByPrimaryKeySelective(Trade row);
 

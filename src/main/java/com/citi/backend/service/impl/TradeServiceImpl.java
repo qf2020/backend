@@ -32,9 +32,10 @@ public class TradeServiceImpl implements TradeService {
         // 根据存入的频率fre设定查询的范围
         calendar.add(fre.getUnit(), fre.getDuration());
         Date dateFrom = calendar.getTime();
-        // 转换为MySQL识别的SQL
+        // 转换为MySQL识别的字符串
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-        List<Trade> tradesByTime = tradeMapper.selectByDateAndPage(sdf.format(dateFrom), sdf.format(dateTo));
+        int startIndex = (currentPage - 1) * pageSize;
+        List<Trade> tradesByTime = tradeMapper.selectByDateAndPage(sdf.format(dateFrom), sdf.format(dateTo), startIndex, pageSize);
         return tradesByTime;
     }
     

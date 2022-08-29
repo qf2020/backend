@@ -22,11 +22,12 @@
     from trade
     where trade_id = #{tradeId,jdbcType=VARCHAR}
   </select>
-  <select id="selectByDateAndPage" parameterType="java.lang.String" resultMap="BaseResultMap">
+  <select id="selectByDateAndPage" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />
     from trade
     where trade_date between #{startTime} and #{endTime}
+    limit #{startIndex}, #{pageSize}
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
     delete from trade

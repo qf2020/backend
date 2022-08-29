@@ -18,7 +18,7 @@ public class TradeController {
     @Resource
     TradeService tradeService;
 
-    @GetMapping("/gettrade")
+    @GetMapping("/getTableData")
     @ResponseBody
     @CrossOrigin
     public List<Trade> getTrade(String fre, int pageSize, int currentPage){
