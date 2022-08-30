@@ -2,9 +2,9 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.citi.backend.dao.StockHoldMapper">
   <resultMap id="BaseResultMap" type="com.citi.backend.entity.StockHold">
-    <id column="stock_hold_id" jdbcType="VARCHAR" property="stockHoldId" />
-    <result column="client_id" jdbcType="VARCHAR" property="clientId" />
-    <result column="stock_id" jdbcType="VARCHAR" property="stockId" />
+    <id column="stock_hold_id" jdbcType="INTEGER" property="stockHoldId" />
+    <result column="client_id" jdbcType="INTEGER" property="clientId" />
+    <result column="stock_id" jdbcType="INTEGER" property="stockId" />
     <result column="hold_number" jdbcType="INTEGER" property="holdNumber" />
     <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
   </resultMap>
@@ -15,16 +15,16 @@
     select 
     <include refid="Base_Column_List" />
     from stock_hold
-    where stock_hold_id = #{stockHoldId,jdbcType=VARCHAR}
+    where stock_hold_id = #{stockHoldId,jdbcType=INTEGER}
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
     delete from stock_hold
-    where stock_hold_id = #{stockHoldId,jdbcType=VARCHAR}
+    where stock_hold_id = #{stockHoldId,jdbcType=INTEGER}
   </delete>
   <insert id="insert" parameterType="com.citi.backend.entity.StockHold">
     insert into stock_hold (stock_hold_id, client_id, stock_id, 
       hold_number, update_time)
-    values (#{stockHoldId,jdbcType=VARCHAR}, #{clientId,jdbcType=VARCHAR}, #{stockId,jdbcType=VARCHAR}, 
+    values (#{stockHoldId,jdbcType=INTEGER}, #{clientId,jdbcType=INTEGER}, #{stockId,jdbcType=INTEGER}, 
       #{holdNumber,jdbcType=INTEGER}, #{updateTime,jdbcType=TIMESTAMP})
   </insert>
   <insert id="insertSelective" parameterType="com.citi.backend.entity.StockHold">
@@ -48,13 +48,13 @@
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
       <if test="stockHoldId != null">
-        #{stockHoldId,jdbcType=VARCHAR},
+        #{stockHoldId,jdbcType=INTEGER},
       </if>
       <if test="clientId != null">
-        #{clientId,jdbcType=VARCHAR},
+        #{clientId,jdbcType=INTEGER},
       </if>
       <if test="stockId != null">
-        #{stockId,jdbcType=VARCHAR},
+        #{stockId,jdbcType=INTEGER},
       </if>
       <if test="holdNumber != null">
         #{holdNumber,jdbcType=INTEGER},
@@ -68,10 +68,10 @@
     update stock_hold
     <set>
       <if test="clientId != null">
-        client_id = #{clientId,jdbcType=VARCHAR},
+        client_id = #{clientId,jdbcType=INTEGER},
       </if>
       <if test="stockId != null">
-        stock_id = #{stockId,jdbcType=VARCHAR},
+        stock_id = #{stockId,jdbcType=INTEGER},
       </if>
       <if test="holdNumber != null">
         hold_number = #{holdNumber,jdbcType=INTEGER},
@@ -80,20 +80,26 @@
         update_time = #{updateTime,jdbcType=TIMESTAMP},
       </if>
     </set>
-    where stock_hold_id = #{stockHoldId,jdbcType=VARCHAR}
+    where stock_hold_id = #{stockHoldId,jdbcType=INTEGER}
   </update>
   <update id="updateByPrimaryKey" parameterType="com.citi.backend.entity.StockHold">
     update stock_hold
-    set client_id = #{clientId,jdbcType=VARCHAR},
-      stock_id = #{stockId,jdbcType=VARCHAR},
+    set client_id = #{clientId,jdbcType=INTEGER},
+      stock_id = #{stockId,jdbcType=INTEGER},
       hold_number = #{holdNumber,jdbcType=INTEGER},
       update_time = #{updateTime,jdbcType=TIMESTAMP}
-    where stock_hold_id = #{stockHoldId,jdbcType=VARCHAR}
+    where stock_hold_id = #{stockHoldId,jdbcType=INTEGER}
   </update>
   <update id="updateStock" parameterType="com.citi.backend.entity.StockHold">
     INSERT INTO stock_hold (client_id, stock_id, hold_number, update_time)
     VALUES
-    (#{clientId,jdbcType=VARCHAR}, #{stockId,jdbcType=VARCHAR}, #{holdNumber,jdbcType=INTEGER}, #{updateTime,jdbcType=TIMESTAMP})
+    (#{clientId,jdbcType=INTEGER}, #{stockId,jdbcType=INTEGER}, #{holdNumber,jdbcType=INTEGER}, #{updateTime,jdbcType=TIMESTAMP})
     ON DUPLICATE KEY UPDATE hold_number = hold_number + #{holdNumber,jdbcType=INTEGER}
   </update>
+  <select id="selectByClientId" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from stock_hold
+    where client_id = #{clientId}
+  </select>
 </mapper>

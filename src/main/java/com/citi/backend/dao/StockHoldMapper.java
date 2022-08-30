@@ -1,5 +1,7 @@
 package com.citi.backend.dao;
 
+import java.util.List;
+
 import com.citi.backend.entity.StockHold;
 import com.citi.backend.entity.StockHoldKey;
 
@@ -17,4 +19,6 @@ public interface StockHoldMapper {
     int updateByPrimaryKey(StockHold row);
 
     int updateStock(StockHold row);
+
+    List<StockHold> selectByClientId(int clientId);
 }
