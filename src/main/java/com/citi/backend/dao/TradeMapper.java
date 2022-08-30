@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.citi.backend.entity.Trade;
 import com.citi.backend.entity.TradeKey;
+import com.citi.backend.query.TradeQuery;
 
 public interface TradeMapper {
     int deleteByPrimaryKey(TradeKey key);
@@ -18,5 +19,5 @@ public interface TradeMapper {
 
     int updateByPrimaryKey(Trade row);
 
-    List<Trade> selectByDateAndPage(String startTime, String endTime, int startIndex, int pageSize);
+    List<Trade> select(TradeQuery tradeQuery);
 }

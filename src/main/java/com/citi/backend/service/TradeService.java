@@ -4,9 +4,8 @@ import java.util.List;
 import java.util.Map;
 
 import com.citi.backend.entity.Trade;
-import com.citi.backend.enums.FrequencyEnum;
 
 public interface TradeService {
-    List<Trade> getTrade(FrequencyEnum fre, int pageSize, int currentPage);
+    List<Trade> getTrade(Map<String, Object> queryInfo);
     void buyStock(Map<String, Object> tradeInfo);
 }

@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.citi.backend.entity.Trade;
-import com.citi.backend.enums.FrequencyEnum;
 import com.citi.backend.service.TradeService;
 
 @RestController
@@ -22,8 +21,8 @@ public class TradeController {
 
     @GetMapping("/getTableData")
     @CrossOrigin
-    public List<Trade> getTrade(String fre, int pageSize, int currentPage){
-        List<Trade> trades = tradeService.getTrade(FrequencyEnum.valueOf("_" + fre), pageSize, currentPage);
+    public List<Trade> getTableData(Map<String, Object> queryInfo){
+        List<Trade> trades = tradeService.getTrade(queryInfo);
         return trades;
     }
 
