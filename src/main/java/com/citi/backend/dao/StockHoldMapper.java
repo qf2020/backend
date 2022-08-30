@@ -1,17 +1,20 @@
 package com.citi.backend.dao;
 
 import com.citi.backend.entity.StockHold;
+import com.citi.backend.entity.StockHoldKey;
 
 public interface StockHoldMapper {
-    int deleteByPrimaryKey(String stockHoldId);
+    int deleteByPrimaryKey(StockHoldKey key);
 
     int insert(StockHold row);
 
     int insertSelective(StockHold row);
 
-    StockHold selectByPrimaryKey(String stockHoldId);
+    StockHold selectByPrimaryKey(StockHoldKey key);
 
     int updateByPrimaryKeySelective(StockHold row);
 
     int updateByPrimaryKey(StockHold row);
+
+    int updateStock(StockHold row);
 }

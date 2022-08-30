@@ -1,22 +1,22 @@
 package com.citi.backend.dao;
 
-import com.citi.backend.entity.Trade;
-import com.citi.backend.entity.TradeStatistic;
-
-import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
+import com.citi.backend.entity.TradeStatistic;
+
 public interface TradeStatisticMapper {
-    int deleteByPrimaryKey(String tradeStatisticId);
+    int deleteByPrimaryKey(Integer tradeStatisticId);
 
     int insert(TradeStatistic row);
 
     int insertSelective(TradeStatistic row);
 
-    TradeStatistic selectByPrimaryKey(String tradeStatisticId);
-    List<Map<String,Object>> selectByDate(String startTime, String endTime);
+    TradeStatistic selectByPrimaryKey(Integer tradeStatisticId);
+
     int updateByPrimaryKeySelective(TradeStatistic row);
 
     int updateByPrimaryKey(TradeStatistic row);
+
+    List<Map<String,Object>> selectByDate(String startTime, String endTime);
 }

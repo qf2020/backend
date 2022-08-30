@@ -1,9 +1,8 @@
 package com.citi.backend.entity;
 
-import java.io.Serializable;
 import java.util.Date;
 
-public class SalesPerson implements Serializable {
+public class SalesPerson {
     private Integer salesPersonId;
 
     private String jobNumber;
@@ -13,8 +12,6 @@ public class SalesPerson implements Serializable {
     private String password;
 
     private Date registerTime;
-
-    private static final long serialVersionUID = 1L;
 
     public Integer getSalesPersonId() {
         return salesPersonId;
@@ -29,7 +26,7 @@ public class SalesPerson implements Serializable {
     }
 
     public void setJobNumber(String jobNumber) {
-        this.jobNumber = jobNumber;
+        this.jobNumber = jobNumber == null ? null : jobNumber.trim();
     }
 
     public String getSalesPersonName() {
@@ -37,7 +34,7 @@ public class SalesPerson implements Serializable {
     }
 
     public void setSalesPersonName(String salesPersonName) {
-        this.salesPersonName = salesPersonName;
+        this.salesPersonName = salesPersonName == null ? null : salesPersonName.trim();
     }
 
     public String getPassword() {
@@ -45,7 +42,7 @@ public class SalesPerson implements Serializable {
     }
 
     public void setPassword(String password) {
-        this.password = password;
+        this.password = password == null ? null : password.trim();
     }
 
     public Date getRegisterTime() {
@@ -54,20 +51,5 @@ public class SalesPerson implements Serializable {
 
     public void setRegisterTime(Date registerTime) {
         this.registerTime = registerTime;
-    }
-
-    @Override
-    public String toString() {
-        StringBuilder sb = new StringBuilder();
-        sb.append(getClass().getSimpleName());
-        sb.append(" [");
-        sb.append("Hash = ").append(hashCode());
-        sb.append(", salesPersonId=").append(salesPersonId);
-        sb.append(", jobNumber=").append(jobNumber);
-        sb.append(", salesPersonName=").append(salesPersonName);
-        sb.append(", password=").append(password);
-        sb.append(", registerTime=").append(registerTime);
-        sb.append("]");
-        return sb.toString();
     }
 }

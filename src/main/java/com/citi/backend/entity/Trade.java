@@ -1,59 +1,26 @@
 package com.citi.backend.entity;
 
-import java.io.Serializable;
 import java.util.Date;
 
-public class Trade implements Serializable {
-    private String tradeId;
-
-    private String clientId;
-
-    private String stockId;
-
-    private String clientName;
+public class Trade extends TradeKey {
+    private Integer tradeId;
 
     private String clientSide;
 
     private Integer size;
 
-    private String salesPersonId;
+    private Integer salesPersonId;
 
     private String tradeType;
 
     private Date tradeDate;
 
-    private static final long serialVersionUID = 1L;
-
-    public String getTradeId() {
+    public Integer getTradeId() {
         return tradeId;
     }
 
-    public void setTradeId(String tradeId) {
+    public void setTradeId(Integer tradeId) {
         this.tradeId = tradeId;
-    }
-
-    public String getClientId() {
-        return clientId;
-    }
-
-    public void setClientId(String clientId) {
-        this.clientId = clientId;
-    }
-
-    public String getStockId() {
-        return stockId;
-    }
-
-    public void setStockId(String stockId) {
-        this.stockId = stockId;
-    }
-
-    public String getClientName() {
-        return clientName;
-    }
-
-    public void setClientName(String clientName) {
-        this.clientName = clientName;
     }
 
     public String getClientSide() {
@@ -61,7 +28,7 @@ public class Trade implements Serializable {
     }
 
     public void setClientSide(String clientSide) {
-        this.clientSide = clientSide;
+        this.clientSide = clientSide == null ? null : clientSide.trim();
     }
 
     public Integer getSize() {
@@ -72,11 +39,11 @@ public class Trade implements Serializable {
         this.size = size;
     }
 
-    public String getSalesPersonId() {
+    public Integer getSalesPersonId() {
         return salesPersonId;
     }
 
-    public void setSalesPersonId(String salesPersonId) {
+    public void setSalesPersonId(Integer salesPersonId) {
         this.salesPersonId = salesPersonId;
     }
 
@@ -85,7 +52,7 @@ public class Trade implements Serializable {
     }
 
     public void setTradeType(String tradeType) {
-        this.tradeType = tradeType;
+        this.tradeType = tradeType == null ? null : tradeType.trim();
     }
 
     public Date getTradeDate() {
@@ -94,24 +61,5 @@ public class Trade implements Serializable {
 
     public void setTradeDate(Date tradeDate) {
         this.tradeDate = tradeDate;
-    }
-
-    @Override
-    public String toString() {
-        StringBuilder sb = new StringBuilder();
-        sb.append(getClass().getSimpleName());
-        sb.append(" [");
-        sb.append("Hash = ").append(hashCode());
-        sb.append(", tradeId=").append(tradeId);
-        sb.append(", clientId=").append(clientId);
-        sb.append(", stockId=").append(stockId);
-        sb.append(", clientName=").append(clientName);
-        sb.append(", clientSide=").append(clientSide);
-        sb.append(", size=").append(size);
-        sb.append(", salesPersonId=").append(salesPersonId);
-        sb.append(", tradeType=").append(tradeType);
-        sb.append(", tradeDate=").append(tradeDate);
-        sb.append("]");
-        return sb.toString();
     }
 }

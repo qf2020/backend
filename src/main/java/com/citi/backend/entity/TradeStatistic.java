@@ -1,10 +1,9 @@
 package com.citi.backend.entity;
 
-import java.io.Serializable;
 import java.util.Date;
 
-public class TradeStatistic implements Serializable {
-    private String tradeStatisticId;
+public class TradeStatistic {
+    private Integer tradeStatisticId;
 
     private String description;
 
@@ -16,13 +15,11 @@ public class TradeStatistic implements Serializable {
 
     private Date updateTime;
 
-    private static final long serialVersionUID = 1L;
-
-    public String getTradeStatisticId() {
+    public Integer getTradeStatisticId() {
         return tradeStatisticId;
     }
 
-    public void setTradeStatisticId(String tradeStatisticId) {
+    public void setTradeStatisticId(Integer tradeStatisticId) {
         this.tradeStatisticId = tradeStatisticId;
     }
 
@@ -31,7 +28,7 @@ public class TradeStatistic implements Serializable {
     }
 
     public void setDescription(String description) {
-        this.description = description;
+        this.description = description == null ? null : description.trim();
     }
 
     public Integer getTotalBuy() {
@@ -64,21 +61,5 @@ public class TradeStatistic implements Serializable {
 
     public void setUpdateTime(Date updateTime) {
         this.updateTime = updateTime;
-    }
-
-    @Override
-    public String toString() {
-        StringBuilder sb = new StringBuilder();
-        sb.append(getClass().getSimpleName());
-        sb.append(" [");
-        sb.append("Hash = ").append(hashCode());
-        sb.append(", tradeStatisticId=").append(tradeStatisticId);
-        sb.append(", description=").append(description);
-        sb.append(", totalBuy=").append(totalBuy);
-        sb.append(", totalSell=").append(totalSell);
-        sb.append(", statisticDate=").append(statisticDate);
-        sb.append(", updateTime=").append(updateTime);
-        sb.append("]");
-        return sb.toString();
     }
 }

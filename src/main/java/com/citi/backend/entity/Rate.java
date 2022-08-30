@@ -1,10 +1,9 @@
 package com.citi.backend.entity;
 
-import java.io.Serializable;
 import java.util.Date;
 
-public class Rate implements Serializable {
-    private String rateId;
+public class Rate {
+    private Integer rateId;
 
     private String currency;
 
@@ -12,13 +11,11 @@ public class Rate implements Serializable {
 
     private Date updateTime;
 
-    private static final long serialVersionUID = 1L;
-
-    public String getRateId() {
+    public Integer getRateId() {
         return rateId;
     }
 
-    public void setRateId(String rateId) {
+    public void setRateId(Integer rateId) {
         this.rateId = rateId;
     }
 
@@ -27,7 +24,7 @@ public class Rate implements Serializable {
     }
 
     public void setCurrency(String currency) {
-        this.currency = currency;
+        this.currency = currency == null ? null : currency.trim();
     }
 
     public Double getRate() {
@@ -44,19 +41,5 @@ public class Rate implements Serializable {
 
     public void setUpdateTime(Date updateTime) {
         this.updateTime = updateTime;
-    }
-
-    @Override
-    public String toString() {
-        StringBuilder sb = new StringBuilder();
-        sb.append(getClass().getSimpleName());
-        sb.append(" [");
-        sb.append("Hash = ").append(hashCode());
-        sb.append(", rateId=").append(rateId);
-        sb.append(", currency=").append(currency);
-        sb.append(", rate=").append(rate);
-        sb.append(", updateTime=").append(updateTime);
-        sb.append("]");
-        return sb.toString();
     }
 }

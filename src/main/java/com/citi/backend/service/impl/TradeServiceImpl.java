@@ -11,7 +11,9 @@ import javax.annotation.Resource;
 
 import org.springframework.stereotype.Service;
 
+import com.citi.backend.dao.StockHoldMapper;
 import com.citi.backend.dao.TradeMapper;
+import com.citi.backend.entity.StockHold;
 import com.citi.backend.entity.Trade;
 import com.citi.backend.enums.FrequencyEnum;
 import com.citi.backend.service.TradeService;
@@ -21,6 +23,9 @@ public class TradeServiceImpl implements TradeService {
 
     @Resource
     TradeMapper tradeMapper;
+
+    @Resource
+    StockHoldMapper stockHoldMapper;
 
     @Override
     public List<Trade> getTrade(FrequencyEnum fre, int pageSize, int currentPage) {
@@ -42,14 +47,24 @@ public class TradeServiceImpl implements TradeService {
 
     @Override
     public void buyStock(Map<String, Object> tradeInfo) {
-        Trade trade = new Trade();
         Date date = new Date();
-        trade.setClientId((String)tradeInfo.get("clientId"));
-        trade.setStockId((String)tradeInfo.get("stockId"));
+
+        Trade trade = new Trade();
+        trade.setClientId((Integer)tradeInfo.get("clientId"));
+        trade.setStockId((Integer)tradeInfo.get("stockId"));
         trade.setSize((Integer)tradeInfo.get("size"));
-        trade.setSalesPersonId((String)tradeInfo.get("salespersonId"));
+        trade.setSalesPersonId((Integer)tradeInfo.get("salespersonId"));
+        trade.setClientSide("Buy");
         trade.setTradeDate(date);
+
+        StockHold stockHold = new StockHold();
+        stockHold.setClientId(trade.getClientId());
+        stockHold.setStockId(trade.getStockId());
+        stockHold.setHoldNumber(trade.getSize());
+        stockHold.setUpdateTime(date);
+
         tradeMapper.insert(trade);
+        stockHoldMapper.updateStock(stockHold);
     }
     
 }

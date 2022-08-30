@@ -90,4 +90,10 @@
       update_time = #{updateTime,jdbcType=TIMESTAMP}
     where stock_hold_id = #{stockHoldId,jdbcType=VARCHAR}
   </update>
+  <update id="updateStock" parameterType="com.citi.backend.entity.StockHold">
+    INSERT INTO stock_hold (client_id, stock_id, hold_number, update_time)
+    VALUES
+    (#{clientId,jdbcType=VARCHAR}, #{stockId,jdbcType=VARCHAR}, #{holdNumber,jdbcType=INTEGER}, #{updateTime,jdbcType=TIMESTAMP})
+    ON DUPLICATE KEY UPDATE hold_number = hold_number + #{holdNumber,jdbcType=INTEGER}
+  </update>
 </mapper>

@@ -16,7 +16,7 @@ public class ClientController {
 
     @GetMapping("/insert")
     @CrossOrigin
-    public int mailSizeSend(@RequestParam("client_id")String id, @RequestParam("client_name")String name, @RequestParam("password")String password){
+    public int mailSizeSend(@RequestParam("client_id")Integer id, @RequestParam("client_name")String name, @RequestParam("password")String password){
 
         int temp = clientService.insert(id,name,password);
         return temp;

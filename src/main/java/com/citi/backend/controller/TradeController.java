@@ -29,12 +29,7 @@ public class TradeController {
 
     @PostMapping("/buyStock")
     @CrossOrigin
-    public Boolean buyStock(@RequestBody Map<String, Object> tradeInfo){
-        try {
+    public void buyStock(@RequestBody Map<String, Object> tradeInfo){
             tradeService.buyStock(tradeInfo);
-        } catch (Exception e) {
-            return false;
-        }
-        return true;
     }
 }

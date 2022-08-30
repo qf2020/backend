@@ -1,10 +1,9 @@
 package com.citi.backend.entity;
 
-import java.io.Serializable;
 import java.util.Date;
 
-public class Client implements Serializable {
-    private String clientId;
+public class Client {
+    private Integer clientId;
 
     private String clientName;
 
@@ -12,13 +11,11 @@ public class Client implements Serializable {
 
     private Date registerTime;
 
-    private static final long serialVersionUID = 1L;
-
-    public String getClientId() {
+    public Integer getClientId() {
         return clientId;
     }
 
-    public void setClientId(String clientId) {
+    public void setClientId(Integer clientId) {
         this.clientId = clientId;
     }
 
@@ -27,7 +24,7 @@ public class Client implements Serializable {
     }
 
     public void setClientName(String clientName) {
-        this.clientName = clientName;
+        this.clientName = clientName == null ? null : clientName.trim();
     }
 
     public String getPassword() {
@@ -35,7 +32,7 @@ public class Client implements Serializable {
     }
 
     public void setPassword(String password) {
-        this.password = password;
+        this.password = password == null ? null : password.trim();
     }
 
     public Date getRegisterTime() {
@@ -44,19 +41,5 @@ public class Client implements Serializable {
 
     public void setRegisterTime(Date registerTime) {
         this.registerTime = registerTime;
-    }
-
-    @Override
-    public String toString() {
-        StringBuilder sb = new StringBuilder();
-        sb.append(getClass().getSimpleName());
-        sb.append(" [");
-        sb.append("Hash = ").append(hashCode());
-        sb.append(", clientId=").append(clientId);
-        sb.append(", clientName=").append(clientName);
-        sb.append(", password=").append(password);
-        sb.append(", registerTime=").append(registerTime);
-        sb.append("]");
-        return sb.toString();
     }
 }

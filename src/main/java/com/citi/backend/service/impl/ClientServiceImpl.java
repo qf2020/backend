@@ -13,7 +13,7 @@ public class ClientServiceImpl implements ClientService{
     private ClientMapper clientMapper;
 
     @Override
-    public int insert(String userID,String userName,String password){
+    public int insert(Integer userID,String userName,String password){
         Client client = new Client();
         client.setClientId(userID);
         client.setClientName(userName);

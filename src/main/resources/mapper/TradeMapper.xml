@@ -5,7 +5,6 @@
     <id column="trade_id" jdbcType="VARCHAR" property="tradeId" />
     <result column="client_id" jdbcType="VARCHAR" property="clientId" />
     <result column="stock_id" jdbcType="VARCHAR" property="stockId" />
-    <result column="client_name" jdbcType="VARCHAR" property="clientName" />
     <result column="client_side" jdbcType="VARCHAR" property="clientSide" />
     <result column="size" jdbcType="INTEGER" property="size" />
     <result column="sales_person_id" jdbcType="VARCHAR" property="salesPersonId" />
@@ -13,7 +12,7 @@
     <result column="trade_date" jdbcType="TIMESTAMP" property="tradeDate" />
   </resultMap>
   <sql id="Base_Column_List">
-    trade_id, client_id, stock_id, client_name, client_side, size, sales_person_id, trade_type, 
+    trade_id, client_id, stock_id, client_side, size, sales_person_id, trade_type, 
     trade_date
   </sql>
   <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
@@ -35,11 +34,11 @@
   </delete>
   <insert id="insert" parameterType="com.citi.backend.entity.Trade">
     insert into trade (trade_id, client_id, stock_id, 
-      client_name, client_side, size, 
+      client_side, size, 
       sales_person_id, trade_type, trade_date
       )
     values (#{tradeId,jdbcType=VARCHAR}, #{clientId,jdbcType=VARCHAR}, #{stockId,jdbcType=VARCHAR}, 
-      #{clientName,jdbcType=VARCHAR}, #{clientSide,jdbcType=VARCHAR}, #{size,jdbcType=INTEGER}, 
+      #{clientSide,jdbcType=VARCHAR}, #{size,jdbcType=INTEGER}, 
       #{salesPersonId,jdbcType=VARCHAR}, #{tradeType,jdbcType=VARCHAR}, #{tradeDate,jdbcType=TIMESTAMP}
       )
   </insert>
@@ -54,9 +53,6 @@
       </if>
       <if test="stockId != null">
         stock_id,
-      </if>
-      <if test="clientName != null">
-        client_name,
       </if>
       <if test="clientSide != null">
         client_side,
@@ -84,9 +80,6 @@
       <if test="stockId != null">
         #{stockId,jdbcType=VARCHAR},
       </if>
-      <if test="clientName != null">
-        #{clientName,jdbcType=VARCHAR},
-      </if>
       <if test="clientSide != null">
         #{clientSide,jdbcType=VARCHAR},
       </if>
@@ -113,9 +106,6 @@
       <if test="stockId != null">
         stock_id = #{stockId,jdbcType=VARCHAR},
       </if>
-      <if test="clientName != null">
-        client_name = #{clientName,jdbcType=VARCHAR},
-      </if>
       <if test="clientSide != null">
         client_side = #{clientSide,jdbcType=VARCHAR},
       </if>
@@ -138,7 +128,6 @@
     update trade
     set client_id = #{clientId,jdbcType=VARCHAR},
       stock_id = #{stockId,jdbcType=VARCHAR},
-      client_name = #{clientName,jdbcType=VARCHAR},
       client_side = #{clientSide,jdbcType=VARCHAR},
       size = #{size,jdbcType=INTEGER},
       sales_person_id = #{salesPersonId,jdbcType=VARCHAR},

@@ -1,11 +1,10 @@
 package com.citi.backend.entity;
 
-import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.Date;
 
-public class Stock implements Serializable {
-    private String stockId;
+public class Stock {
+    private Integer stockId;
 
     private String ric;
 
@@ -23,13 +22,11 @@ public class Stock implements Serializable {
 
     private Date updateTime;
 
-    private static final long serialVersionUID = 1L;
-
-    public String getStockId() {
+    public Integer getStockId() {
         return stockId;
     }
 
-    public void setStockId(String stockId) {
+    public void setStockId(Integer stockId) {
         this.stockId = stockId;
     }
 
@@ -38,7 +35,7 @@ public class Stock implements Serializable {
     }
 
     public void setRic(String ric) {
-        this.ric = ric;
+        this.ric = ric == null ? null : ric.trim();
     }
 
     public String getTicker() {
@@ -46,7 +43,7 @@ public class Stock implements Serializable {
     }
 
     public void setTicker(String ticker) {
-        this.ticker = ticker;
+        this.ticker = ticker == null ? null : ticker.trim();
     }
 
     public String getIssuerSectorId() {
@@ -54,7 +51,7 @@ public class Stock implements Serializable {
     }
 
     public void setIssuerSectorId(String issuerSectorId) {
-        this.issuerSectorId = issuerSectorId;
+        this.issuerSectorId = issuerSectorId == null ? null : issuerSectorId.trim();
     }
 
     public String getCurrency() {
@@ -62,7 +59,7 @@ public class Stock implements Serializable {
     }
 
     public void setCurrency(String currency) {
-        this.currency = currency;
+        this.currency = currency == null ? null : currency.trim();
     }
 
     public BigDecimal getPrice() {
@@ -95,24 +92,5 @@ public class Stock implements Serializable {
 
     public void setUpdateTime(Date updateTime) {
         this.updateTime = updateTime;
-    }
-
-    @Override
-    public String toString() {
-        StringBuilder sb = new StringBuilder();
-        sb.append(getClass().getSimpleName());
-        sb.append(" [");
-        sb.append("Hash = ").append(hashCode());
-        sb.append(", stockId=").append(stockId);
-        sb.append(", ric=").append(ric);
-        sb.append(", ticker=").append(ticker);
-        sb.append(", issuerSectorId=").append(issuerSectorId);
-        sb.append(", currency=").append(currency);
-        sb.append(", price=").append(price);
-        sb.append(", nationalUsd=").append(nationalUsd);
-        sb.append(", totalCount=").append(totalCount);
-        sb.append(", updateTime=").append(updateTime);
-        sb.append("]");
-        return sb.toString();
     }
 }
