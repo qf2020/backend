@@ -1,0 +1,24 @@
+package com.example.eurakeserverconsume.controller;
+
+
+import com.example.eurakeserverconsume.service.ConsumeService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import java.util.List;
+import java.util.Map;
+
+@RestController
+@RequestMapping("/tradeStatistc")
+public class TradeStatisticController {
+    @Autowired
+    private ConsumeService consumeService;
+    @GetMapping("/search")
+    @CrossOrigin
+    public List<Map<String,Object>> getChart(String fre){
+        return consumeService.getChart(fre);
+    }
+}
