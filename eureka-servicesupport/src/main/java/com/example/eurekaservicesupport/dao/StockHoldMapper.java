@@ -19,7 +19,9 @@ public interface StockHoldMapper {
 
     int updateByPrimaryKey(StockHold row);
 
-    int updateStock(StockHold row);
+    int buyStock(StockHold row);
+
+    int sellStock(StockHold row);
 
     List<StockHold> selectByClientId(int clientId);
 }

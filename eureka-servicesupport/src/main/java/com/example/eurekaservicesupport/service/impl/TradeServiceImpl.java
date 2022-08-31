@@ -110,7 +110,30 @@ public class TradeServiceImpl implements TradeService {
         stockHold.setUpdateTime(date);
 
         tradeMapper.insert(trade);
-        stockHoldMapper.updateStock(stockHold);
+        stockHoldMapper.buyStock(stockHold);
+    }
+
+    @Override
+    public void sellStock(Map<String, Object> tradeInfo) {
+        Date date = new Date();
+
+        Trade trade = new Trade();
+        trade.setClientId((Integer)tradeInfo.get("clientId"));
+        trade.setStockId((Integer)tradeInfo.get("stockId"));
+        trade.setSize((Integer)tradeInfo.get("size"));
+        trade.setSalesPersonId((Integer)tradeInfo.get("salespersonId"));
+        trade.setClientSide("Sell");
+        trade.setTradeDate(date);
+
+        StockHold stockHold = new StockHold();
+        stockHold.setClientId(trade.getClientId());
+        stockHold.setStockId(trade.getStockId());
+        stockHold.setHoldNumber(trade.getSize());
+        stockHold.setUpdateTime(date);
+
+        tradeMapper.insert(trade);
+        stockHoldMapper.sellStock(stockHold);
+        
     }
     
 }

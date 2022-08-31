@@ -32,4 +32,10 @@ public class TradeController {
     public void buyStock(@RequestBody Map<String, Object> tradeInfo){
             tradeService.buyStock(tradeInfo);
     }
+
+    @PostMapping("/sellStock")
+    @CrossOrigin
+    public void sellStock(@RequestBody Map<String, Object> tradeInfo){
+            tradeService.sellStock(tradeInfo);
+    }
 }

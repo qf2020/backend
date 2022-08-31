@@ -90,11 +90,17 @@
       update_time = #{updateTime,jdbcType=TIMESTAMP}
     where stock_hold_id = #{stockHoldId,jdbcType=INTEGER}
   </update>
-  <update id="updateStock" parameterType="com.example.eurekaservicesupport.entity.StockHold">
+  <update id="buyStock" parameterType="com.example.eurekaservicesupport.entity.StockHold">
     INSERT INTO stock_hold (client_id, stock_id, hold_number, update_time)
     VALUES
     (#{clientId,jdbcType=INTEGER}, #{stockId,jdbcType=INTEGER}, #{holdNumber,jdbcType=INTEGER}, #{updateTime,jdbcType=TIMESTAMP})
     ON DUPLICATE KEY UPDATE hold_number = hold_number + #{holdNumber,jdbcType=INTEGER}, update_time = #{updateTime,jdbcType=TIMESTAMP}
+  </update>
+  <update id="sellStock" parameterType="com.example.eurekaservicesupport.entity.StockHold">
+    INSERT INTO stock_hold (client_id, stock_id, hold_number, update_time)
+    VALUES
+    (#{clientId,jdbcType=INTEGER}, #{stockId,jdbcType=INTEGER}, #{holdNumber,jdbcType=INTEGER}, #{updateTime,jdbcType=TIMESTAMP})
+    ON DUPLICATE KEY UPDATE hold_number = hold_number - #{holdNumber,jdbcType=INTEGER}, update_time = #{updateTime,jdbcType=TIMESTAMP}
   </update>
   <select id="selectByClientId" resultMap="BaseResultMap">
     select 

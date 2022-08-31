@@ -22,4 +22,11 @@ public class ClientController {
         return temp;
     }
 
+    @PostMapping("/login")
+    @CrossOrigin
+    public int login(){
+        return 200;
+    }
+
+
 }
