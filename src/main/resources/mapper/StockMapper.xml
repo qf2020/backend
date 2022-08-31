@@ -139,4 +139,14 @@
       update_time = #{updateTime,jdbcType=TIMESTAMP}
     where stock_id = #{stockId,jdbcType=VARCHAR}
   </update>
+  <select id="selectAll" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from stock
+  </select>
+  <select id="selectByName" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from stock
+  </select>
 </mapper>

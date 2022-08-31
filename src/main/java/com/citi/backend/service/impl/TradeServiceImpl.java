@@ -32,7 +32,9 @@ public class TradeServiceImpl implements TradeService {
     public List<Trade> getTrade(Map<String, Object> queryInfo) {
         TradeQuery tradeQuery = new TradeQuery();
         // 过滤频率
+
         if (queryInfo.containsKey("fre")){
+            tradeQuery.setFilter(true);
             FrequencyEnum fre = FrequencyEnum.valueOf("_"+(String)queryInfo.get("fre"));
             Date dateNow = new Date();
             Calendar calendar = Calendar.getInstance();
@@ -50,6 +52,7 @@ public class TradeServiceImpl implements TradeService {
         }
 
         if(queryInfo.containsKey("pageSize") & queryInfo.containsKey("currentPage")){
+            tradeQuery.setFilter(true);
             int pageSize = (Integer)queryInfo.get("pageSize");
             int currentPage = (Integer)queryInfo.get("currentPage");
             int startIndex = (currentPage - 1) * pageSize;
@@ -59,6 +62,7 @@ public class TradeServiceImpl implements TradeService {
 
         // 排序
         if(queryInfo.containsKey("order")){
+            tradeQuery.setFilter(true);
             int order = (Integer)queryInfo.get("order");
             tradeQuery.setOrder(order);
         }
@@ -80,12 +84,14 @@ public class TradeServiceImpl implements TradeService {
 
         // 交易类型：买/卖
         if(queryInfo.containsKey("clientSide")){
+            tradeQuery.setFilter(true);
             String clientSide = (String)queryInfo.get("clientSide");
             tradeQuery.setClientSide(clientSide);
         }
-
-        
-        
+        System.out.println("============================");
+        System.out.println(queryInfo);
+        System.out.println(tradeQuery.getFilter());
+        System.out.println("============================");
         List<Trade> tradesByTime = tradeMapper.select(tradeQuery);
         return tradesByTime;
     }

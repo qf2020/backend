@@ -9,11 +9,14 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.citi.backend.entity.Trade;
 import com.citi.backend.service.TradeService;
 
+@RequestMapping("/trade")
 @RestController
 public class TradeController {
     @Resource
@@ -21,7 +24,7 @@ public class TradeController {
 
     @GetMapping("/getTableData")
     @CrossOrigin
-    public List<Trade> getTableData(Map<String, Object> queryInfo){
+    public List<Trade> getTableData(@RequestParam(required = false) Map<String, Object> queryInfo){
         List<Trade> trades = tradeService.getTrade(queryInfo);
         return trades;
     }
