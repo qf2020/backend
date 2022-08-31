@@ -139,4 +139,18 @@
       update_time = #{updateTime,jdbcType=TIMESTAMP}
     where stock_id = #{stockId,jdbcType=VARCHAR}
   </update>
+  <select id="selectAll" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from stock
+    <if test="startIndex != null and pageSize != null">
+      limit #{startIndex,jdbcType=INTEGER}, #{pageSize,jdbcType=INTEGER}
+    </if>
+  </select>
+  <select id="selectByName" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from stock
+    where ticker = #{ticker,jdbcType=VARCHAR}
+  </select>
 </mapper>

@@ -1,6 +1,8 @@
 package com.example.eurekaservicesupport.dao;
 
 
+import java.util.List;
+
 import com.example.eurekaservicesupport.entity.Stock;
 
 public interface StockMapper {
@@ -15,4 +17,8 @@ public interface StockMapper {
     int updateByPrimaryKeySelective(Stock row);
 
     int updateByPrimaryKey(Stock row);
+
+    List<Stock> selectAll(Integer startIndex, Integer pageSize);
+
+    Stock selectByName(String ticker);
 }

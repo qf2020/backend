@@ -52,8 +52,8 @@ public class TradeServiceImpl implements TradeService {
         }
 
         if(queryInfo.containsKey("pageSize") & queryInfo.containsKey("currentPage")){
-            int pageSize = (Integer)queryInfo.get("pageSize");
-            int currentPage = (Integer)queryInfo.get("currentPage");
+            int pageSize = Integer.parseInt((String)queryInfo.get("pageSize"));
+            int currentPage = Integer.parseInt((String)queryInfo.get("currentPage"));
             int startIndex = (currentPage - 1) * pageSize;
             tradeQuery.setPageSize(pageSize);
             tradeQuery.setStartIndex(startIndex);
