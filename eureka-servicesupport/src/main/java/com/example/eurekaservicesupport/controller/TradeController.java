@@ -1,5 +1,6 @@
 package com.example.eurekaservicesupport.controller;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -7,12 +8,7 @@ import javax.annotation.Resource;
 
 import com.example.eurekaservicesupport.entity.Trade;
 import com.example.eurekaservicesupport.service.TradeService;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
-
+import org.springframework.web.bind.annotation.*;
 
 
 @RestController
@@ -29,7 +25,13 @@ public class TradeController {
 
     @PostMapping("/buyStock")
     @CrossOrigin
-    public void buyStock(@RequestBody Map<String, Object> tradeInfo){
+    public boolean buyStock(@RequestBody Map<String, Object> tradeInfo){
+
+        try{
             tradeService.buyStock(tradeInfo);
+            return true;
+        }catch (Exception e){
+            return false;
+        }
     }
 }

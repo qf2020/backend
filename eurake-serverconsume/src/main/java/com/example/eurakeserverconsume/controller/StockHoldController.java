@@ -1,5 +1,6 @@
 package com.example.eurakeserverconsume.controller;
 
+import com.example.eurakeserverconsume.res.SUCCESS;
 import com.example.eurakeserverconsume.service.ConsumeService;
 import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,10 +23,10 @@ public class StockHoldController {
     @HystrixCommand(fallbackMethod = "error_code")
     @CrossOrigin
     public Object getStockHold(int clientId){
-        return consumeService.getStockHold(clientId);
+        return new SUCCESS(consumeService.getStockHold(clientId));
     }
 
-    public Object error_code(String s){
+    public Object error_code(int clientId){
         Map<String,Object> tp = new HashMap<>();
         tp.put("false","服务器异常");
         return tp;
