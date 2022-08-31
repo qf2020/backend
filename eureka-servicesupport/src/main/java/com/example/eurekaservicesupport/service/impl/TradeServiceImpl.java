@@ -12,6 +12,7 @@ import javax.annotation.Resource;
 import com.example.eurekaservicesupport.dao.StockHoldMapper;
 import com.example.eurekaservicesupport.dao.TradeMapper;
 import com.example.eurekaservicesupport.entity.StockHold;
+import com.example.eurekaservicesupport.entity.StockHoldKey;
 import com.example.eurekaservicesupport.entity.Trade;
 import com.example.eurekaservicesupport.enums.FrequencyEnum;
 import com.example.eurekaservicesupport.query.TradeQuery;
@@ -117,6 +118,13 @@ public class TradeServiceImpl implements TradeService {
     public void sellStock(Map<String, Object> tradeInfo) {
         Date date = new Date();
 
+        //判断库存是否足够
+        StockHoldKey stockHoldKey = new StockHoldKey();
+        stockHoldKey.setClientId((Integer)tradeInfo.get("clientId"));
+        stockHoldKey.setStockId((Integer)tradeInfo.get("stockId"));
+        StockHold currentStockHold = stockHoldMapper.selectByPrimaryKey(stockHoldKey);
+        assert currentStockHold.getHoldNumber() - (Integer)tradeInfo.get("size") >= 0;
+
         Trade trade = new Trade();
         trade.setClientId((Integer)tradeInfo.get("clientId"));
         trade.setStockId((Integer)tradeInfo.get("stockId"));
@@ -124,6 +132,7 @@ public class TradeServiceImpl implements TradeService {
         trade.setSalesPersonId((Integer)tradeInfo.get("salespersonId"));
         trade.setClientSide("Sell");
         trade.setTradeDate(date);
+
 
         StockHold stockHold = new StockHold();
         stockHold.setClientId(trade.getClientId());

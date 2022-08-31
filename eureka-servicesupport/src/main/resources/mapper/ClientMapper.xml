@@ -79,4 +79,17 @@
       register_time = #{registerTime,jdbcType=TIMESTAMP}
     where client_id = #{clientId,jdbcType=INTEGER}
   </update>
+  <select id="selectClientByRequest" parameterType="com.example.eurekaservicesupport.entity.Client" resultMap="BaseResultMap">
+    select 
+    client_id, client_name, register_time
+    from client
+    where client_name = #{clientName,jdbcType=VARCHAR}
+    and password = #{password,jdbcType=VARCHAR}
+  </select>
+  <update id="changePassword">
+    update client
+    set password = #{newPassword,jdbcType=VARCHAR},
+    where client_id = #{clientId,jdbcType=INTEGER}
+    and password = #{originalPassword,jdbcType=VARCHAR}
+  </update>
 </mapper>

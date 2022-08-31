@@ -11,11 +11,12 @@
   <sql id="Base_Column_List">
     stock_hold_id, client_id, stock_id, hold_number, update_time
   </sql>
-  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+  <select id="selectByPrimaryKey" parameterType="com.example.eurekaservicesupport.entity.StockHoldKey" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />
     from stock_hold
-    where stock_hold_id = #{stockHoldId,jdbcType=INTEGER}
+    where client_id = #{clientId,jdbcType=INTEGER}
+    and stock_id = #{stockId,jdbcType=INTEGER}
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
     delete from stock_hold

@@ -2,8 +2,11 @@ package com.example.eurekaservicesupport.controller;
 
 
 
+import com.example.eurekaservicesupport.entity.Client;
 import com.example.eurekaservicesupport.service.ClientService;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.Map;
 
 import javax.annotation.Resource;
 
@@ -14,19 +17,36 @@ public class ClientController {
     @Resource
     ClientService clientService;
 
-    @GetMapping("/insert")
+    @PostMapping("/register")
     @CrossOrigin
-    public int mailSizeSend(@RequestParam("client_id")Integer id, @RequestParam("client_name")String name, @RequestParam("password")String password){
-
-        int temp = clientService.insert(id,name,password);
+    public int register(@RequestBody Client client){
+        int temp = clientService.insert(client);
         return temp;
     }
 
     @PostMapping("/login")
     @CrossOrigin
-    public int login(){
-        return 200;
+    public Client login(@RequestBody Client loginRequest){
+        Client clientInfo = clientService.login(loginRequest);
+        return clientInfo;
     }
 
+    @PostMapping("/changePassword")
+    @CrossOrigin
+    public Boolean changePassword(@RequestBody Map<String, Object> changePasswordRequest){
+        try {
+            Integer clientId = (Integer)changePasswordRequest.get("clientId");
+            String originalPassword = (String)changePasswordRequest.get("originalPassword");
+            String newPassword = (String)changePasswordRequest.get("newPassword");
+            System.out.println(clientId);
+            System.out.println(originalPassword);
+            System.out.println(newPassword);
+            clientService.changePassword(clientId,originalPassword,newPassword);
+            return true;
+        } catch (Exception e) {
+            return false;
+        }
+        
+    }
 
 }

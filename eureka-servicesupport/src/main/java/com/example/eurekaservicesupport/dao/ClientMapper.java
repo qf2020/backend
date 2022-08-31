@@ -15,4 +15,8 @@ public interface ClientMapper {
     int updateByPrimaryKeySelective(Client row);
 
     int updateByPrimaryKey(Client row);
+
+    Client selectClientByRequest(Client loginRequest);
+
+    void changePassword(Integer clientId, String originalPassword, String newPassword);
 }
