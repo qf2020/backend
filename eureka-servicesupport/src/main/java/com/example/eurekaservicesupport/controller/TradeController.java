@@ -1,6 +1,5 @@
 package com.example.eurekaservicesupport.controller;
 
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -37,7 +36,12 @@ public class TradeController {
 
     @PostMapping("/sellStock")
     @CrossOrigin
-    public void sellStock(@RequestBody Map<String, Object> tradeInfo){
+    public Boolean sellStock(@RequestBody Map<String, Object> tradeInfo){
+        try {
             tradeService.sellStock(tradeInfo);
+            return true;
+        } catch (Exception e) {
+            return false;
+        }
     }
 }

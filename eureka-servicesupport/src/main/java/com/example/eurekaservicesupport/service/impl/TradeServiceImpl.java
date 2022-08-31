@@ -123,7 +123,12 @@ public class TradeServiceImpl implements TradeService {
         stockHoldKey.setClientId((Integer)tradeInfo.get("clientId"));
         stockHoldKey.setStockId((Integer)tradeInfo.get("stockId"));
         StockHold currentStockHold = stockHoldMapper.selectByPrimaryKey(stockHoldKey);
-        assert currentStockHold.getHoldNumber() - (Integer)tradeInfo.get("size") >= 0;
+        System.out.println("==================================");
+        System.out.println(currentStockHold.getHoldNumber() - (Integer)tradeInfo.get("size") >= 0);
+        System.out.println("==================================");
+        if(currentStockHold.getHoldNumber() - (Integer)tradeInfo.get("size") < 0){
+            throw new RuntimeException("Not Enough Stock Hold.");
+        }
 
         Trade trade = new Trade();
         trade.setClientId((Integer)tradeInfo.get("clientId"));
