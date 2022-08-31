@@ -1,6 +1,7 @@
 package com.example.eurakeserverconsume.controller;
 
 
+import com.example.eurakeserverconsume.res.SUCCESS;
 import com.example.eurakeserverconsume.service.ConsumeService;
 import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,7 +25,7 @@ public class TradeStatisticController {
     @HystrixCommand(fallbackMethod = "error_code")
     @CrossOrigin
     public Object getChart(String fre){
-        return consumeService.getChart(fre);
+        return new SUCCESS(consumeService.getChart(fre));
     }
 
     public Object error_code(String s){

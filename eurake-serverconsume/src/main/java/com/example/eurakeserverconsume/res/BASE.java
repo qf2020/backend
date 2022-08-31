@@ -1,22 +1,22 @@
 package com.example.eurakeserverconsume.res;
 
 public class BASE {
-    private boolean state;
+    private String code;
     private String msg;
-    private Object result;
+    private Object data;
 
-    public BASE(boolean state, String msg, Object result) {
-        this.state = state;
+    public BASE(String code, String msg, Object data) {
+        this.code = code;
         this.msg = msg;
-        this.result = result;
+        this.data = data;
     }
 
-    public boolean isState() {
-        return state;
+    public String getCode() {
+        return code;
     }
 
-    public void setstate(boolean state) {
-        this.state = state;
+    public void setCode(String code) {
+        this.code = code;
     }
 
     public String getMsg() {
@@ -27,11 +27,11 @@ public class BASE {
         this.msg = msg;
     }
 
-    public Object getResult() {
-        return result;
+    public Object getData() {
+        return data;
     }
 
-    public void setResult(Object result) {
-        this.result = result;
+    public void setData(Object data) {
+        this.data = data;
     }
 }

@@ -20,7 +20,7 @@ public interface ConsumeService {
         @GetMapping("/getTableData")
         public List<Object> getTableData(@RequestParam("queryInfo") Map<String, Object> queryInfo);//
         @PostMapping("/buyStock")
-        public void buyStock(@RequestParam("tradeInfo") Map<String, Object> tradeInfo);
+        public boolean buyStock(@RequestBody Map<String, Object> tradeInfo);
         @GetMapping("/getStockHold")
         public List<Object> getStockHold(@RequestParam("clientId")int clientId);
 }

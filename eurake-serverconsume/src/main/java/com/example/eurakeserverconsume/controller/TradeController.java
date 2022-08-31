@@ -1,5 +1,7 @@
 package com.example.eurakeserverconsume.controller;
 
+import com.example.eurakeserverconsume.res.ERROR;
+import com.example.eurakeserverconsume.res.SUCCESS;
 import com.example.eurakeserverconsume.service.ConsumeService;
 import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,10 +20,10 @@ public class TradeController {
     private ConsumeService consumeService;
 
     @GetMapping("/getTableData")
-    //@HystrixCommand(fallbackMethod = "error_code")
+    @HystrixCommand(fallbackMethod = "error_code")
     @CrossOrigin
     public Object getTableData(Map<String, Object> queryInfo){
-       return consumeService.getTableData(queryInfo);
+       return new SUCCESS(consumeService.getTableData(queryInfo));
     }
     public Object error_code(Map<String, Object> queryInfo){
         Map<String,Object> tp = new HashMap<>();
@@ -29,10 +31,18 @@ public class TradeController {
         return tp;
     }
     @PostMapping("/buyStock")
-    @HystrixCommand(fallbackMethod = "error_code")
+   // @HystrixCommand(fallbackMethod = "error_buyStock")
     @CrossOrigin
-    public void buyStock(@RequestBody Map<String, Object> tradeInfo){
-            consumeService.buyStock(tradeInfo);
+    public Object buyStock(@RequestBody Map<String, Object> tradeInfo){
+            if(consumeService.buyStock(tradeInfo)){
+                return new SUCCESS("");
+            }else{
+                return new ERROR("插入失败","");
+            }
     }
-
+//    public Object error_buyStock( Map<String, Object> tradeInfo){
+//        Map<String,Object> tp = new HashMap<>();
+//        tp.put("false","服务器异常");
+//        return tp;
+//    }
 }
