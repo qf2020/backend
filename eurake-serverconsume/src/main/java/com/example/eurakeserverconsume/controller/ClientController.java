@@ -8,6 +8,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
+import java.util.HashMap;
+import java.util.Map;
 
 @RestController
 @RequestMapping("/client")
@@ -17,14 +19,16 @@ public class ClientController {
     private ConsumeService consumeService;
 
     @GetMapping("/insert")
-    @HystrixCommand(fallbackMethod = "errorcode")
+    @HystrixCommand(fallbackMethod = "error_code")
     @CrossOrigin
-    public int mailSizeSend(@RequestParam("client_id")Integer id, @RequestParam("client_name")String name, @RequestParam("password")String password){
+    public Object mailSizeSend(@RequestParam("client_id")Integer id, @RequestParam("client_name")String name, @RequestParam("password")String password){
 
         int temp = consumeService.mailSizeSend(id,name,password);
         return temp;
     }
-    public String errorcode(String s){
-        return s+"error request";
+    public Object error_code(@RequestParam("client_id")Integer id, @RequestParam("client_name")String name, @RequestParam("password")String password){
+        Map<String,Object> tp = new HashMap<>();
+        tp.put("false","服务器异常");
+        return tp;
     }
 }
