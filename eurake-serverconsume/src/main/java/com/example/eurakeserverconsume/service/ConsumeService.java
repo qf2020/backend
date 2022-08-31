@@ -2,10 +2,7 @@ package com.example.eurakeserverconsume.service;
 
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Map;
@@ -21,11 +18,11 @@ public interface ConsumeService {
         @GetMapping("/insert")
         public int mailSizeSend(@RequestParam("client_id")Integer id, @RequestParam("client_name")String name, @RequestParam("password")String password);
         @GetMapping("/getTableData")
-        public List<Object> getTableData(Map<String, Object> queryInfo);//
+        public List<Object> getTableData(@RequestParam("queryInfo") Map<String, Object> queryInfo);//
         @PostMapping("/buyStock")
-        public void buyStock(@RequestBody Map<String, Object> tradeInfo);
+        public void buyStock(@RequestParam("tradeInfo") Map<String, Object> tradeInfo);
         @GetMapping("/getStockHold")
-        public List<Object> getStockHold(int clientId);
+        public List<Object> getStockHold(@RequestParam("clientId")int clientId);
 }
 
 

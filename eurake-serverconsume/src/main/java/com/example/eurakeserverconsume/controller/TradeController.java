@@ -18,12 +18,12 @@ public class TradeController {
     private ConsumeService consumeService;
 
     @GetMapping("/getTableData")
-    @HystrixCommand(fallbackMethod = "error_code")
+    //@HystrixCommand(fallbackMethod = "error_code")
     @CrossOrigin
     public Object getTableData(Map<String, Object> queryInfo){
        return consumeService.getTableData(queryInfo);
     }
-    public Object error_code(){
+    public Object error_code(Map<String, Object> queryInfo){
         Map<String,Object> tp = new HashMap<>();
         tp.put("false","服务器异常");
         return tp;
