@@ -87,7 +87,7 @@ public class TradeServiceImpl implements TradeService {
 
         
         
-        List<Trade> tradesByTime = tradeMapper.select(tradeQuery);
+        List<Trade> tradesByTime = tradeMapper.selectALL(tradeQuery);
         return tradesByTime;
     }
 

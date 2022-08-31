@@ -8,21 +8,26 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.annotation.Resource;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @RestController
 public class StockHoldController {
-    public String errorcode(String s){
-        return s+"error request";
-    }
+
     @Autowired
     private ConsumeService consumeService;
 
     @GetMapping("/getStockHold")
-    @HystrixCommand(fallbackMethod = "errorcode")
+    @HystrixCommand(fallbackMethod = "error_code")
     @CrossOrigin
-    public List<Object> getStockHold(int clientId){
+    public Object getStockHold(int clientId){
         return consumeService.getStockHold(clientId);
     }
 
+    public Object error_code(String s){
+        Map<String,Object> tp = new HashMap<>();
+        tp.put("false","服务器异常");
+        return tp;
+    }
 }

@@ -21,5 +21,5 @@ public interface TradeMapper {
 
     int updateByPrimaryKey(Trade row);
 
-    List<Trade> select(TradeQuery tradeQuery);
+    List<Trade> selectALL(TradeQuery tradeQuery);
 }

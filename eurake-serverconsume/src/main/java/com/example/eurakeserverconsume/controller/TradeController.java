@@ -6,28 +6,33 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 
 @RestController
 public class TradeController {
-    public String errorcode(String s){
-        return s+"error request";
-    }
+
     @Autowired
     private ConsumeService consumeService;
 
     @GetMapping("/getTableData")
-    @HystrixCommand(fallbackMethod = "errorcode")
+    @HystrixCommand(fallbackMethod = "error_code")
     @CrossOrigin
-    public List<Object> getTableData(Map<String, Object> queryInfo){
+    public Object getTableData(Map<String, Object> queryInfo){
        return consumeService.getTableData(queryInfo);
     }
-
+    public Object error_code(){
+        Map<String,Object> tp = new HashMap<>();
+        tp.put("false","服务器异常");
+        return tp;
+    }
     @PostMapping("/buyStock")
+    @HystrixCommand(fallbackMethod = "error_code")
     @CrossOrigin
     public void buyStock(@RequestBody Map<String, Object> tradeInfo){
             consumeService.buyStock(tradeInfo);
     }
+
 }

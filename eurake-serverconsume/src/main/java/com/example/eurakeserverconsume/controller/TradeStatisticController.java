@@ -29,7 +29,7 @@ public class TradeStatisticController {
 
     public Object error_code(String s){
         Map<String,Object> tp = new HashMap<>();
-        tp.put("false","服务器过载");
+        tp.put("false","服务器异常");
         return tp;
     }
 

@@ -7,6 +7,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
 
+import java.util.HashMap;
+import java.util.Map;
+
 @RestController
 @RequestMapping( "/Hello")
 public class ConsumerController {
@@ -16,12 +19,14 @@ public class ConsumerController {
     private RestTemplate restTemplate;
 
     @RequestMapping("/Consumer")
-    @HystrixCommand(fallbackMethod = "errorcode")
+    @HystrixCommand(fallbackMethod = "error_code")
     public Object haha() {
         return consumeService.hello();
     }
-    public String errorcode(String s){
-        return s+"error request";
+    public Object error_code(String s){
+        Map<String,Object> tp = new HashMap<>();
+        tp.put("false","服务器异常");
+        return tp;
     }
 
 }
