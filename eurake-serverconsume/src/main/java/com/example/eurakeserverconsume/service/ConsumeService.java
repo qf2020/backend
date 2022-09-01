@@ -24,19 +24,19 @@ public interface ConsumeService {
         @GetMapping("/getStockHold")
         public List<Object> getStockHold(@RequestParam("clientId")int clientId);
 
-        @PostMapping("/register")
+        @PostMapping("/client/register")
         public boolean register(@RequestBody Object client);
 
-        @PostMapping("/login")
+        @PostMapping("/client/login")
         public Object login(@RequestBody Object loginRequest);
 
-        @PostMapping("/changePassword")
+        @PostMapping("/client/changePassword")
         public Boolean changePassword(@RequestBody Map<String, Object> changePasswordRequest);
 
-        @GetMapping("/getAllStock")
+        @GetMapping("/stock/getAllStock")
         public List<Object> getAllStock(@RequestParam(required = false) Map<String, Object> queryInfo);
 
-        @GetMapping("/getStockByTicker")
+        @GetMapping("/stock/getStockByTicker")
         public Object getStockByTicker(@RequestParam("ticker") String ticker);
 
         @PostMapping("/sellStock")
