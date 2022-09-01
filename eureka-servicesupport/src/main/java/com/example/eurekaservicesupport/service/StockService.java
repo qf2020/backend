@@ -8,4 +8,5 @@ import com.example.eurekaservicesupport.entity.Stock;
 public interface StockService {
     Stock getStockByTicker(String ticker); 
     List<Stock> getAllStock(Map<String, Object> queryInfo);
+    List<String> getMatchTicker(String ticker);
 }

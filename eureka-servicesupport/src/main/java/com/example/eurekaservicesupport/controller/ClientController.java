@@ -34,8 +34,14 @@ public class ClientController {
     @PostMapping("/login")
     @CrossOrigin
     public Client login(@RequestBody Client loginRequest){
-        Client clientInfo = clientService.login(loginRequest);
-        return clientInfo;
+        try {
+            Client clientInfo = clientService.login(loginRequest);
+            return clientInfo;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
+        
     }
 
     @PostMapping("/changePassword")

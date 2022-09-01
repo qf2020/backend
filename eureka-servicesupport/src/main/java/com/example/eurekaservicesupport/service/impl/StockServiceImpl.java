@@ -36,4 +36,9 @@ public class StockServiceImpl implements StockService {
         List<Stock> stocks = stockMapper.selectAll(startIndex, pageSize);
         return stocks;
     }
+
+    @Override
+    public List<String> getMatchTicker(String ticker) {
+        return stockMapper.getMatchTicker(ticker);
+    }
 }

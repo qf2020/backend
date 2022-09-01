@@ -153,4 +153,10 @@
     from stock
     where ticker = #{ticker,jdbcType=VARCHAR}
   </select>
+  <select id="getMatchTicker" resultType="java.lang.String">
+    select 
+    ticker
+    from stock
+    where ticker like #{ticker,jdbcType=VARCHAR}
+  </select>
 </mapper>

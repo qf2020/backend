@@ -21,4 +21,6 @@ public interface StockMapper {
     List<Stock> selectAll(Integer startIndex, Integer pageSize);
 
     Stock selectByName(String ticker);
+
+    List<String> getMatchTicker(String ticker);
 }
