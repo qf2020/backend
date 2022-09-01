@@ -57,9 +57,6 @@
     <if test="startTime != null and endTime != null">
       and trade_date between #{startTime} and #{endTime}
     </if>
-    <if test="pageSize != null and startIndex != null">
-      limit #{startIndex}, #{pageSize}
-    </if>
     <if test="price == 1">
       ORDER BY stock.price ASC
     </if>
@@ -73,16 +70,19 @@
       ORDER BY trade.size DESC
     </if>
     <if test="nationalUsd == 1">
-      ORDER BY stock.nationalUsd ASC
+      ORDER BY stock.national_usd ASC
     </if>
     <if test="nationalUsd == 2">
-      ORDER BY stock.nationalUsd DESC
+      ORDER BY stock.national_usd DESC
     </if>
     <if test="date == 1">
       ORDER BY trade.trade_date ASC
     </if>
     <if test="date == 2">
       ORDER BY trade.trade_date DESC
+    </if>
+    <if test="pageSize != null and startIndex != null">
+      limit #{startIndex}, #{pageSize}
     </if>
   </select>
   <select id="countAll" parameterType="com.example.eurekaservicesupport.query.TradeQuery" resultType="java.lang.Integer">

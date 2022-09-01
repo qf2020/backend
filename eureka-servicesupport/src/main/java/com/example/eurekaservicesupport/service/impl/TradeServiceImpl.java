@@ -57,6 +57,8 @@ public class TradeServiceImpl implements TradeService {
                 tradeQuery.setEndTime(null);
             }
         }
+
+        // 分页
         if(queryInfo.containsKey("pageSize") & queryInfo.containsKey("currentPage")){
             Integer pageSize = Integer.parseInt((String)queryInfo.get("pageSize"));
             Integer currentPage = Integer.parseInt((String)queryInfo.get("currentPage"));
@@ -135,7 +137,7 @@ public class TradeServiceImpl implements TradeService {
             if ("".equals(size) | "0".equals(size)){
                 tradeQuery.setSize(null);
             } else{
-                tradeQuery.setPrice(Integer.parseInt(size));
+                tradeQuery.setSize((Integer.parseInt(size)));
             }  
         }
 
@@ -145,7 +147,7 @@ public class TradeServiceImpl implements TradeService {
             if ("".equals(nationalUsd) | "0".equals(nationalUsd)){
                 tradeQuery.setNationalUsd(null);
             } else{
-                tradeQuery.setPrice(Integer.parseInt(nationalUsd));
+                tradeQuery.setNationalUsd(Integer.parseInt(nationalUsd));
             }  
         }
 
@@ -155,10 +157,10 @@ public class TradeServiceImpl implements TradeService {
             if ("".equals(date) | "0".equals(date)){
                 tradeQuery.setDate(null);
             } else{
-                tradeQuery.setPrice(Integer.parseInt(date));
+                tradeQuery.setDate(Integer.parseInt(date));
             }  
         }
-
+        System.out.println(tradeQuery);
         List<Map<String, Object>> tradesByTime = tradeMapper.selectALL(tradeQuery);
         Integer index = 0;
         Float totalBuy = (float) 0.0;

@@ -133,4 +133,12 @@ public class TradeQuery {
     public void setDate(Integer date) {
         this.date = date;
     }
+    @Override
+    public String toString() {
+        return "TradeQuery [clientId=" + clientId + ", clientName=" + clientName + ", clientSide=" + clientSide
+                + ", currency=" + currency + ", date=" + date + ", endTime=" + endTime + ", nationalUsd=" + nationalUsd
+                + ", order=" + order + ", pageSize=" + pageSize + ", price=" + price + ", ric=" + ric + ", size=" + size
+                + ", startIndex=" + startIndex + ", startTime=" + startTime + ", ticker=" + ticker + ", tradeType="
+                + tradeType + ", type=" + type + "]";
+    }
 }
