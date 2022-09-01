@@ -36,6 +36,15 @@
     and trade.stock_id = stock.stock_id
     and trade.sales_person_id = sales_person.sales_person_id
     and stock.issuer_sector_id = issuer_sector.issuer_sector_id
+    <if test="salesperson != null">
+      and sales_person_name = #{salesperson}
+    </if>
+    <if test="issuerSector != null">
+      and issuer_sector.issuer_sector_name = #{issuerSector}
+    </if>
+    <if test="type != null">
+      and trade_type = #{type}
+    </if>
     <if test="ticker != null">
       and ticker = #{ticker}
     </if>

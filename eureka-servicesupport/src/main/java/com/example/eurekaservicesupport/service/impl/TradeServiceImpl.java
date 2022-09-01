@@ -85,6 +85,8 @@ public class TradeServiceImpl implements TradeService {
             tradeQuery.setTicker(ticker);
         }
 
+        
+
         // 币种
         if(queryInfo.containsKey("currency")){
             String currency = (String)queryInfo.get("currency");
@@ -113,12 +115,30 @@ public class TradeServiceImpl implements TradeService {
         }
 
         // 交易类型：HT/PT
-        if(queryInfo.containsKey("tradeType")){
-            String tradeType = (String)queryInfo.get("tradeType");
-            if ("".equals(tradeType)){
-                tradeType = null;
+        if(queryInfo.containsKey("type")){
+            String type = (String)queryInfo.get("type");
+            if ("".equals(type)){
+                type = null;
             }
-            tradeQuery.setTradeType(tradeType);
+            tradeQuery.setType(type);
+        }
+
+        // 板块
+        if(queryInfo.containsKey("issuerSector")){
+            String issuerSector = (String)queryInfo.get("issuerSector");
+            if ("".equals(issuerSector)){
+                issuerSector = null;
+            }
+            tradeQuery.setIssuerSector(issuerSector);
+        }
+
+        // 销售员
+        if(queryInfo.containsKey("salesperson")){
+            String salesperson = (String)queryInfo.get("salesperson");
+            if ("".equals(salesperson)){
+                salesperson = null;
+            }
+            tradeQuery.setSalesperson(salesperson);
         }
 
         // 按价格排序

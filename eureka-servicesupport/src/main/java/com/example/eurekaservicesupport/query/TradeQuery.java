@@ -17,6 +17,8 @@ public class TradeQuery {
     private String clientSide;
     private String type;
     private Integer startIndex;
+    private String issuerSector;
+    private String salesperson;
     private Integer pageSize;
     
     public Integer getClientId() {
@@ -140,5 +142,17 @@ public class TradeQuery {
                 + ", order=" + order + ", pageSize=" + pageSize + ", price=" + price + ", ric=" + ric + ", size=" + size
                 + ", startIndex=" + startIndex + ", startTime=" + startTime + ", ticker=" + ticker + ", tradeType="
                 + tradeType + ", type=" + type + "]";
+    }
+    public String getIssuerSector() {
+        return issuerSector;
+    }
+    public void setIssuerSector(String issuerSector) {
+        this.issuerSector = issuerSector;
+    }
+    public String getSalesperson() {
+        return salesperson;
+    }
+    public void setSalesperson(String salesperson) {
+        this.salesperson = salesperson;
     }
 }
