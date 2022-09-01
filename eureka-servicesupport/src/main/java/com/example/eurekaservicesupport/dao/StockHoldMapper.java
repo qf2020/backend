@@ -25,4 +25,6 @@ public interface StockHoldMapper {
     int sellStock(StockHold row);
 
     List<Map<String, Object>> selectByClientId(Integer clientId, Integer startIndex, Integer pageSize);
+
+    Integer countAll(Integer clientId);
 }

@@ -19,7 +19,7 @@ public class StockHoldController {
 
     @GetMapping("/getStockHold")
     @CrossOrigin
-    public List<Map<String, Object>> getStockHold(int clientId, @RequestParam(required = false) Integer pageSize, @RequestParam(required = false) Integer currentPage){
+    public Map<String, Object> getStockHold(int clientId, @RequestParam(required = false) Integer pageSize, @RequestParam(required = false) Integer currentPage){
         return stockHoldService.getStockHold(clientId, pageSize, currentPage);
     }
 }

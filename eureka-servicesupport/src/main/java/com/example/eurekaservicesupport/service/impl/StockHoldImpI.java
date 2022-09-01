@@ -6,6 +6,8 @@ import com.example.eurekaservicesupport.service.StockHoldService;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -16,12 +18,17 @@ public class StockHoldImpI implements StockHoldService {
     StockHoldMapper stockHoldMapper;
 
     @Override
-    public List<Map<String, Object>> getStockHold(Integer clientId, Integer pageSize, Integer currentPage) {
+    public Map<String, Object> getStockHold(Integer clientId, Integer pageSize, Integer currentPage) {
         Integer startIndex = null;
         if(pageSize != null & currentPage != null){
             startIndex = (currentPage - 1) * pageSize;
         }
-        return stockHoldMapper.selectByClientId(clientId,startIndex,pageSize);
+        Map<String, Object> map = new HashMap<String, Object>();
+        List<Map<String, Object>> list = stockHoldMapper.selectByClientId(clientId,startIndex,pageSize);
+        Integer total = stockHoldMapper.countAll(clientId);
+        map.put("total", total);
+        map.put("dataList", list);
+        return map;
     }
     
 }

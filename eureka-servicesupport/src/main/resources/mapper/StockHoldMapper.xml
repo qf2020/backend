@@ -105,16 +105,20 @@
   </update>
   <select id="selectByClientId" resultType="java.util.HashMap">
     select 
-    stock_hold_id,
-    stock_hold.client_id, client.client_name,
-    stock_hold.stock_id, stock.ticker,
-    stock_hold.hold_number, stock_hold.update_time
-    from stock_hold, client, stock
+    *
+    from stock_hold, stock, issuer_sector
     where stock_hold.client_id = #{clientId}
-    and stock_hold.client_id = client.client_id
     and stock_hold.stock_id = stock.stock_id
+    and stock.issuer_sector_id = issuer_sector.issuer_sector_id
     <if test="startIndex != null and pageSize != null">
       limit #{startIndex}, #{pageSize}
     </if>
+  </select>
+  <select id="countAll" resultType="java.lang.Integer">
+    select 
+    count(*)
+    from stock_hold, stock
+    where stock_hold.client_id = #{clientId}
+    and stock_hold.stock_id = stock.stock_id
   </select>
 </mapper>

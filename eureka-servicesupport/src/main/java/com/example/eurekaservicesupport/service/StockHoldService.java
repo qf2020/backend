@@ -6,5 +6,5 @@ import java.util.Map;
 
 
 public interface StockHoldService {
-    public List<Map<String, Object>> getStockHold(Integer clientId, Integer pageSize, Integer currentPage);
+    public Map<String, Object> getStockHold(Integer clientId, Integer pageSize, Integer currentPage);
 }
