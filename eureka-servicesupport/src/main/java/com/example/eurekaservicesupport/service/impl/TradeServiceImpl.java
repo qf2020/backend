@@ -67,6 +67,7 @@ public class TradeServiceImpl implements TradeService {
         // 客户名称
         if(queryInfo.containsKey("clientName")){
             String clientName = (String)queryInfo.get("clientName");
+            tradeQuery.setClientName(clientName);
         }
 
         // 股票名称
@@ -86,6 +87,11 @@ public class TradeServiceImpl implements TradeService {
         }
 
         List<Map<String, Object>> tradesByTime = tradeMapper.selectALL(tradeQuery);
+        Integer index = 0;
+        for(Map<String, Object> map: tradesByTime){
+            index++;
+            map.put("key", index);
+        }
         return tradesByTime;
     }
 

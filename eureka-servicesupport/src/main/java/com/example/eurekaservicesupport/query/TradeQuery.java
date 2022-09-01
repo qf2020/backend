@@ -2,6 +2,7 @@ package com.example.eurekaservicesupport.query;
 
 public class TradeQuery {
     private Integer clientId;
+    private String clientName;
     private String startTime;
     private String endTime;
     private Integer order;
@@ -56,6 +57,24 @@ public class TradeQuery {
         return pageSize;
     }
     public void setPageSize(int pageSize) {
+        this.pageSize = pageSize;
+    }
+    public void setClientId(Integer clientId) {
+        this.clientId = clientId;
+    }
+    public String getClientName() {
+        return clientName;
+    }
+    public void setClientName(String clientName) {
+        this.clientName = clientName;
+    }
+    public void setOrder(Integer order) {
+        this.order = order;
+    }
+    public void setStartIndex(Integer startIndex) {
+        this.startIndex = startIndex;
+    }
+    public void setPageSize(Integer pageSize) {
         this.pageSize = pageSize;
     }
 }

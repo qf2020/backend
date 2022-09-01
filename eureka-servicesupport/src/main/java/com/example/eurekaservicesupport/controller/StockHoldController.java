@@ -5,7 +5,6 @@ import java.util.Map;
 
 import javax.annotation.Resource;
 
-import com.example.eurekaservicesupport.entity.StockHold;
 import com.example.eurekaservicesupport.service.StockHoldService;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
