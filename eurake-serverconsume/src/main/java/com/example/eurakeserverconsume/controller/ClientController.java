@@ -21,7 +21,7 @@ public class ClientController {
     private ConsumeService consumeService;
 
     @PostMapping("/register")
-    @HystrixCommand(fallbackMethod = "error_code")
+   // @HystrixCommand(fallbackMethod = "error_code")
     @CrossOrigin
     public Object register(@RequestBody Object client){
         if(consumeService.register(client)){
