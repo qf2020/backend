@@ -25,7 +25,7 @@
     select 
     trade.trade_id,
     trade.client_id, client.client_name,
-    trade.stock_id, stock.ric, stock.ticker,
+    trade.stock_id, stock.ric, stock.ticker, stock.price,
     client_side, size,
     trade.sales_person_id, sales_person.sales_person_name,
     stock.issuer_sector_id, issuer_sector.issuer_sector_name,
