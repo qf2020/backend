@@ -43,12 +43,10 @@ public class ClientController {
     public Boolean changePassword(@RequestBody Map<String, Object> changePasswordRequest){
         try {
             Integer clientId = (Integer)changePasswordRequest.get("clientId");
-            String originalPassword = (String)changePasswordRequest.get("originalPassword");
             String newPassword = (String)changePasswordRequest.get("newPassword");
             System.out.println(clientId);
-            System.out.println(originalPassword);
             System.out.println(newPassword);
-            clientService.changePassword(clientId,originalPassword,newPassword);
+            clientService.changePassword(clientId,newPassword);
             return true;
         } catch (Exception e) {
             e.printStackTrace();

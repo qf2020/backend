@@ -29,7 +29,7 @@ public class ClientServiceImpl implements ClientService {
     }
 
     @Override
-    public void changePassword(Integer clientId, String originalPassword, String newPassword) {
-        clientMapper.changePassword(clientId,originalPassword,newPassword);
+    public void changePassword(Integer clientId, String newPassword) {
+        clientMapper.changePassword(clientId, newPassword);
     }
 }

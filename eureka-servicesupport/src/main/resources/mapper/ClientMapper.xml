@@ -90,6 +90,5 @@
     update client
     set password = #{newPassword,jdbcType=VARCHAR}
     where client_id = #{clientId,jdbcType=INTEGER}
-    and password = #{originalPassword,jdbcType=VARCHAR}
   </update>
 </mapper>

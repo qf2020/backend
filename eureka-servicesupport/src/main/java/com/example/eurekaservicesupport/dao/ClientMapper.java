@@ -18,5 +18,5 @@ public interface ClientMapper {
 
     Client selectClientByRequest(Client loginRequest);
 
-    void changePassword(Integer clientId, String originalPassword, String newPassword);
+    void changePassword(Integer clientId, String newPassword);
 }
