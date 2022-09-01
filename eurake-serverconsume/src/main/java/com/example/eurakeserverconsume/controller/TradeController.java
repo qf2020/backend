@@ -45,4 +45,14 @@ public class TradeController {
 //        tp.put("false","服务器异常");
 //        return tp;
 //    }
+
+    @PostMapping("/sellStock")
+    @CrossOrigin
+    public Object sellStock(@RequestBody Map<String, Object> tradeInfo){
+        if(consumeService.sellStock(tradeInfo)){
+            return new SUCCESS("");
+        }else{
+            return new ERROR("插入失败","");
+        }
+    }
 }

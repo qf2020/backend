@@ -19,9 +19,15 @@ public class ClientController {
 
     @PostMapping("/register")
     @CrossOrigin
-    public int register(@RequestBody Client client){
-        int temp = clientService.insert(client);
-        return temp;
+    public boolean register(@RequestBody Client client){
+        try{
+            clientService.insert(client);
+            return true;
+        }catch (Exception e){
+            return false;
+        }
+
+
     }
 
     @PostMapping("/login")
