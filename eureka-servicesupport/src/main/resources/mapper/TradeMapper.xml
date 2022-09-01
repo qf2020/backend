@@ -21,10 +21,34 @@
     from trade
     where trade_id = #{tradeId,jdbcType=VARCHAR}
   </select>
-  <select id="selectALL" parameterType="com.example.eurekaservicesupport.query.TradeQuery" resultMap="BaseResultMap">
+  <select id="selectALL" parameterType="com.example.eurekaservicesupport.query.TradeQuery" resultType="java.util.HashMap">
     select 
-    <include refid="Base_Column_List" />
-    from trade
+    trade.trade_id,
+    trade.client_id, client.client_name,
+    trade.stock_id, stock.ticker,
+    client_side, size,
+    trade.sales_person_id, sales_person.sales_person_name,
+    trade_type, trade_date
+    from trade, client, stock, sales_person
+    where
+    trade.client_id = client.client_id
+    and trade.stock_id = stock.stock_id
+    and trade.sales_person_id = sales_person.sales_person_id
+    <if test="clientSide != null">
+      and client_side = #{clientSide}
+    </if>
+    <if test="startTime != null and endTime != null">
+      and trade_date between #{startTime} and #{endTime}
+    </if>
+    <if test="pageSize != null and startIndex != null">
+      limit #{startIndex}, #{pageSize}
+    </if>
+    <if test="order == 1">
+      ASC
+    </if>
+    <if test="order == 2">
+      DESC
+    </if>
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
     delete from trade

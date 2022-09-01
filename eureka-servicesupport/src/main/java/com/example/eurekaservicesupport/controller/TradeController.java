@@ -5,7 +5,6 @@ import java.util.Map;
 
 import javax.annotation.Resource;
 
-import com.example.eurekaservicesupport.entity.Trade;
 import com.example.eurekaservicesupport.service.TradeService;
 import org.springframework.web.bind.annotation.*;
 
@@ -17,8 +16,8 @@ public class TradeController {
 
     @GetMapping("/getTableData")
     @CrossOrigin
-    public List<Trade> getTableData(@RequestParam(required = false) Map<String, Object> queryInfo){
-        List<Trade> trades = tradeService.getTrade(queryInfo);
+    public List<Map<String, Object>> getTableData(@RequestParam(required = false) Map<String, Object> queryInfo){
+        List<Map<String, Object>> trades = tradeService.getTrade(queryInfo);
         return trades;
     }
 

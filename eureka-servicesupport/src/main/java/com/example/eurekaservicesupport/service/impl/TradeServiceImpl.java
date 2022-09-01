@@ -31,7 +31,7 @@ public class TradeServiceImpl implements TradeService {
     StockHoldMapper stockHoldMapper;
 
     @Override
-    public List<Trade> getTrade(Map<String, Object> queryInfo) {
+    public List<Map<String, Object>> getTrade(Map<String, Object> queryInfo) {
         TradeQuery tradeQuery = new TradeQuery();
         // 过滤频率
         if (queryInfo.containsKey("fre")){
@@ -50,11 +50,10 @@ public class TradeServiceImpl implements TradeService {
             tradeQuery.setStartTime(sdf.format(dateFrom));
             tradeQuery.setEndTime(sdf.format(dateTo));
         }
-
         if(queryInfo.containsKey("pageSize") & queryInfo.containsKey("currentPage")){
-            int pageSize = Integer.parseInt((String)queryInfo.get("pageSize"));
-            int currentPage = Integer.parseInt((String)queryInfo.get("currentPage"));
-            int startIndex = (currentPage - 1) * pageSize;
+            Integer pageSize = Integer.parseInt((String)queryInfo.get("pageSize"));
+            Integer currentPage = Integer.parseInt((String)queryInfo.get("currentPage"));
+            Integer startIndex = (currentPage - 1) * pageSize;
             tradeQuery.setPageSize(pageSize);
             tradeQuery.setStartIndex(startIndex);
         }
@@ -86,9 +85,7 @@ public class TradeServiceImpl implements TradeService {
             tradeQuery.setClientSide(clientSide);
         }
 
-        
-        
-        List<Trade> tradesByTime = tradeMapper.selectALL(tradeQuery);
+        List<Map<String, Object>> tradesByTime = tradeMapper.selectALL(tradeQuery);
         return tradesByTime;
     }
 

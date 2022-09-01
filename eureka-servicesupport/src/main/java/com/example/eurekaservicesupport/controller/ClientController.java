@@ -24,6 +24,7 @@ public class ClientController {
             clientService.insert(client);
             return true;
         }catch (Exception e){
+            e.printStackTrace();
             return false;
         }
 
@@ -50,6 +51,7 @@ public class ClientController {
             clientService.changePassword(clientId,originalPassword,newPassword);
             return true;
         } catch (Exception e) {
+            e.printStackTrace();
             return false;
         }
         

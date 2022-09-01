@@ -5,6 +5,7 @@ import com.example.eurekaservicesupport.entity.TradeKey;
 import com.example.eurekaservicesupport.query.TradeQuery;
 
 import java.util.List;
+import java.util.Map;
 
 
 
@@ -21,5 +22,5 @@ public interface TradeMapper {
 
     int updateByPrimaryKey(Trade row);
 
-    List<Trade> selectALL(TradeQuery tradeQuery);
+    List<Map<String, Object>> selectALL(TradeQuery tradeQuery);
 }

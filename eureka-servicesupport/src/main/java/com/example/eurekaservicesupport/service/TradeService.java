@@ -7,7 +7,7 @@ import java.util.Map;
 
 
 public interface TradeService {
-    List<Trade> getTrade(Map<String, Object> queryInfo);
+    List<Map<String, Object>> getTrade(Map<String, Object> queryInfo);
     void buyStock(Map<String, Object> tradeInfo);
     void sellStock(Map<String, Object> tradeInfo);
 }
