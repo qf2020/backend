@@ -103,6 +103,36 @@
     and trade.stock_id = stock.stock_id
     and trade.sales_person_id = sales_person.sales_person_id
     and stock.issuer_sector_id = issuer_sector.issuer_sector_id
+    <if test="salesperson != null">
+      and sales_person_name = #{salesperson}
+    </if>
+    <if test="issuerSector != null">
+      and issuer_sector.issuer_sector_name = #{issuerSector}
+    </if>
+    <if test="type != null">
+      and trade_type = #{type}
+    </if>
+    <if test="ticker != null">
+      and ticker = #{ticker}
+    </if>
+    <if test="ric != null">
+      and ric = #{ric}
+    </if>
+    <if test="currency != null">
+      and currency = #{currency}
+    </if>
+    <if test="tradeType != null">
+      and trade_type = #{tradeType}
+    </if>
+    <if test="clientName != null">
+      and client_name = #{clientName}
+    </if>
+    <if test="clientSide != null">
+      and client_side = #{clientSide}
+    </if>
+    <if test="startTime != null and endTime != null">
+      and trade_date between #{startTime} and #{endTime}
+    </if>
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
     delete from trade

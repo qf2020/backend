@@ -59,7 +59,8 @@ public class TradeServiceImpl implements TradeService {
         }
 
         // 分页
-        if(queryInfo.containsKey("pageSize") & queryInfo.containsKey("currentPage")){
+        if(queryInfo.containsKey("pageSize") && queryInfo.containsKey("currentPage")){
+            System.out.println(queryInfo);
             Integer pageSize = Integer.parseInt((String)queryInfo.get("pageSize"));
             Integer currentPage = Integer.parseInt((String)queryInfo.get("currentPage"));
             Integer startIndex = (currentPage - 1) * pageSize;
@@ -67,6 +68,7 @@ public class TradeServiceImpl implements TradeService {
             tradeQuery.setStartIndex(startIndex);
         }
 
+        System.out.println(tradeQuery);
         // 客户名称
         if(queryInfo.containsKey("clientName")){
             String clientName = (String)queryInfo.get("clientName");
@@ -145,7 +147,7 @@ public class TradeServiceImpl implements TradeService {
         if(queryInfo.containsKey("price")){
             String price = (String)queryInfo.get("price");
             if ("".equals(price) | "0".equals(price)){
-                tradeQuery.setPageSize(null);
+                tradeQuery.setPrice(null);
             } else{
                 tradeQuery.setPrice(Integer.parseInt(price));
             }
