@@ -39,7 +39,15 @@ public class ClientController {
     @PostMapping("/login")
     @CrossOrigin
     public Object login(@RequestBody Object loginRequest){
-        return new SUCCESS(consumeService.login(loginRequest));
+        if(consumeService.login(loginRequest) == null){
+            return new ERROR("登录失败","");
+        }else{
+            Map<String,Object> n = new HashMap<>();
+            n.put("clientInfo",consumeService.login(loginRequest));
+            return new SUCCESS(n);
+        }
+
+
     }
 
     @PostMapping("/changePassword")

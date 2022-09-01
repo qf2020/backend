@@ -20,9 +20,10 @@ public class TradeController {
     private ConsumeService consumeService;
 
     @GetMapping("/getTableData")
-    @HystrixCommand(fallbackMethod = "error_code")
+    //@HystrixCommand(fallbackMethod = "error_code")
     @CrossOrigin
-    public Object getTableData(Map<String, Object> queryInfo){
+    public Object getTableData(@RequestParam(required = false) Map<String, Object> queryInfo){
+
        return new SUCCESS(consumeService.getTableData(queryInfo));
     }
     public Object error_code(Map<String, Object> queryInfo){

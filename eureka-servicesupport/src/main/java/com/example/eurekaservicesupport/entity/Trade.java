@@ -1,5 +1,8 @@
 package com.example.eurekaservicesupport.entity;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+import org.springframework.format.annotation.DateTimeFormat;
+
 import java.util.Date;
 
 public class Trade extends TradeKey {
@@ -12,7 +15,8 @@ public class Trade extends TradeKey {
     private Integer salesPersonId;
 
     private String tradeType;
-
+    @JsonFormat(pattern = "yyyy-MM-dd HH-mm-ss",timezone ="GMT-8")
+    @DateTimeFormat(pattern = "yyy-MM-dd HH-mm-ss")
     private Date tradeDate;
 
     public Integer getTradeId() {

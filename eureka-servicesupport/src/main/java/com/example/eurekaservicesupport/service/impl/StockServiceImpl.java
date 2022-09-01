@@ -41,4 +41,10 @@ public class StockServiceImpl implements StockService {
     public List<String> getMatchTicker(String ticker) {
         return stockMapper.getMatchTicker(ticker);
     }
+    public List<String> getMatchRic(String ticker,String ric){
+        return stockMapper.getMatchRic(ticker,ric);
+    }
+    public Map<String,Object> getMatchStock(String ticker,String ric){
+        return stockMapper.getMatchStock(ticker,ric);
+    }
 }

@@ -154,9 +154,23 @@
     where ticker = #{ticker,jdbcType=VARCHAR}
   </select>
   <select id="getMatchTicker" resultType="java.lang.String">
-    select 
+    select distinct
     ticker
     from stock
-    where ticker like #{ticker,jdbcType=VARCHAR}
+    where ticker like #{ticker,jdbcType=VARCHAR} LIMIT 5
   </select>
+  <select id="getMatchRic" resultType="java.lang.String">
+    select ric
+    from stock
+    where ticker = #{ticker,jdbcType=VARCHAR} AND ric like #{ric,jdbcType=VARCHAR} LIMIT 5
+  </select>
+
+  <select id="getMatchStock" resultType="hashmap">
+    select
+      stock_id, ric, ticker, currency, price, national_usd, total_count,
+      update_time,i.issuer_sector_name
+    from stock AS s,issuer_sector AS i
+    where ticker = #{ticker,jdbcType=VARCHAR} AND ric = #{ric,jdbcType=VARCHAR} AND s.issuer_sector_id = i.issuer_sector_id
+  </select>
+
 </mapper>

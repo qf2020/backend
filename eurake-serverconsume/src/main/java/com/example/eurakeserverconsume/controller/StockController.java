@@ -36,4 +36,22 @@ public class StockController {
     public Object getStockByTicker(String ticker){
         return new SUCCESS(consumeService.getStockByTicker(ticker));
     }
+
+    @GetMapping("/getMatchTicker")
+    @CrossOrigin
+    public Object getMatchTicker(String ticker){
+        return new SUCCESS(consumeService.getMatchTicker(ticker));
+    }
+
+    @GetMapping("/getMatchRic")
+    @CrossOrigin
+    public Object getMatchRic(String ticker,String ric){
+        return new SUCCESS(consumeService.getMatchRic(ticker,ric));
+    }
+
+    @GetMapping("/getMatchStock")
+    @CrossOrigin
+    public Object getMatchStock(String ticker,String ric){
+        return new SUCCESS(consumeService.getMatchStock(ticker,ric));
+    }
 }

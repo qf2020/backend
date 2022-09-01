@@ -6,6 +6,7 @@ import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.annotation.Resource;
@@ -22,11 +23,11 @@ public class StockHoldController {
     @GetMapping("/getStockHold")
     @HystrixCommand(fallbackMethod = "error_code")
     @CrossOrigin
-    public Object getStockHold(int clientId){
-        return new SUCCESS(consumeService.getStockHold(clientId));
+    public Object getStockHold(int clientId, @RequestParam(required = false) Integer pageSize, @RequestParam(required = false) Integer currentPage){
+        return new SUCCESS(consumeService.getStockHold(clientId,pageSize,currentPage));
     }
 
-    public Object error_code(int clientId){
+    public Object error_code(int clientId, @RequestParam(required = false) Integer pageSize, @RequestParam(required = false) Integer currentPage){
         Map<String,Object> tp = new HashMap<>();
         tp.put("false","服务器异常");
         return tp;

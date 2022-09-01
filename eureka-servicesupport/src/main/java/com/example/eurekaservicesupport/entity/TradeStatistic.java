@@ -1,5 +1,8 @@
 package com.example.eurekaservicesupport.entity;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+import org.springframework.format.annotation.DateTimeFormat;
+
 import java.util.Date;
 
 public class TradeStatistic {
@@ -10,9 +13,11 @@ public class TradeStatistic {
     private Integer totalBuy;
 
     private Integer totalSell;
-
+    @JsonFormat(pattern = "yyyy-MM-dd HH-mm-ss",timezone ="GMT-8")
+    @DateTimeFormat(pattern = "yyy-MM-dd HH-mm-ss")
     private Date statisticDate;
-
+    @JsonFormat(pattern = "yyyy-MM-dd HH-mm-ss",timezone ="GMT-8")
+    @DateTimeFormat(pattern = "yyy-MM-dd HH-mm-ss")
     private Date updateTime;
 
     public Integer getTradeStatisticId() {

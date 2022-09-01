@@ -43,4 +43,19 @@ public class StockController {
         map.put("tickerList", tickers);
         return map;
     }
+
+    @GetMapping("/getMatchRic")
+    @CrossOrigin
+    public Map<String,List<String>> getMatchRic(String ticker,String ric){
+        Map<String ,List<String>> n = new HashMap<>();
+        n.put("ricList",stockService.getMatchRic(ticker,"%"+ric+"%"));
+        return n;
+    }
+    @GetMapping("/getMatchStock")
+    @CrossOrigin
+    public Map<String,Map<String,Object>> getMatchStock(String ticker,String ric){
+        Map<String ,Map<String,Object>> n = new HashMap<>();
+        n.put("stock",stockService.getMatchStock(ticker,ric));
+        return n;
+    }
 }

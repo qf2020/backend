@@ -2,6 +2,7 @@ package com.example.eurekaservicesupport.dao;
 
 
 import java.util.List;
+import java.util.Map;
 
 import com.example.eurekaservicesupport.entity.Stock;
 
@@ -23,4 +24,10 @@ public interface StockMapper {
     Stock selectByName(String ticker);
 
     List<String> getMatchTicker(String ticker);
+
+    List<String> getMatchRic(String ticker,String ric);
+
+    Map<String,Object> getMatchStock(String ticker, String ric);
+
+
 }

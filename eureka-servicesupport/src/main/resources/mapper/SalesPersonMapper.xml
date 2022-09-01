@@ -11,11 +11,11 @@
   <sql id="Base_Column_List">
     sales_person_id, job_number, sales_person_name, password, register_time
   </sql>
-  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
-    select 
-    <include refid="Base_Column_List" />
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultType="hashmap">
+    select
+      sales_person_id AS salespersonId,sales_person_name AS salespersonName
     from sales_person
-    where sales_person_id = #{salesPersonId,jdbcType=INTEGER}
+    where sales_person_name like #{salesPersonName}
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
     delete from sales_person

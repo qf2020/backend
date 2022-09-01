@@ -20,7 +20,7 @@ public class TradeStatisticController {
 
     @GetMapping("/search")
     @CrossOrigin
-    public List<Map<String,Object>> getChart(String fre){
+    public Map<String,Object> getChart(String fre){
 
         List<Map<String,Object>> tradeStatistic = tradeStatisticService.getChart(FrequencyEnum.valueOf("_" + fre));
         List<Object> dateList = new ArrayList<>();
@@ -31,17 +31,15 @@ public class TradeStatisticController {
             buySeries.add(k.get("total_buy"));
             sellSeries.add(k.get("total_sell"));
         }
-        List<Map<String,Object>> n = new ArrayList<>();
-        Map<String,Object> k1 = new HashMap<>();
-        Map<String,Object> k2 = new HashMap<>();
-        Map<String,Object> k3 = new HashMap<>();
-        k1.put("dataList",dateList);
-        k2.put("buySeries",buySeries);
-        k3.put("sellSeries",sellSeries);
-        n.add(k1);
-        n.add(k2);
-        n.add(k3);
 
-        return n;
+        Map<String,Object> k1 = new HashMap<>();
+
+        k1.put("dateList",dateList);
+        k1.put("buySeries",buySeries);
+        k1.put("sellSeries",sellSeries);
+
+
+
+        return k1;
     }
 }

@@ -9,4 +9,6 @@ public interface StockService {
     Stock getStockByTicker(String ticker); 
     List<Stock> getAllStock(Map<String, Object> queryInfo);
     List<String> getMatchTicker(String ticker);
+    List<String> getMatchRic(String ticker,String ric);
+    Map<String,Object> getMatchStock(String ticker,String ric);
 }
