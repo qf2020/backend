@@ -25,7 +25,7 @@
     select 
     trade.trade_id,
     trade.client_id, client.client_name,
-    trade.stock_id, stock.ric, stock.ticker, stock.price, stock.national_usd,
+    trade.stock_id, stock.ric, stock.ticker, stock.price, stock.national_usd, stock.currency,
     client_side, size,
     trade.sales_person_id, sales_person.sales_person_name,
     stock.issuer_sector_id, issuer_sector.issuer_sector_name,
@@ -36,6 +36,18 @@
     and trade.stock_id = stock.stock_id
     and trade.sales_person_id = sales_person.sales_person_id
     and stock.issuer_sector_id = issuer_sector.issuer_sector_id
+    <if test="ticker != null">
+      and ticker = #{ticker}
+    </if>
+    <if test="ric != null">
+      and ric = #{ric}
+    </if>
+    <if test="currency != null">
+      and currency = #{currency}
+    </if>
+    <if test="tradeType != null">
+      and trade_type = #{tradeType}
+    </if>
     <if test="clientName != null">
       and client_name = #{clientName}
     </if>
@@ -48,11 +60,29 @@
     <if test="pageSize != null and startIndex != null">
       limit #{startIndex}, #{pageSize}
     </if>
-    <if test="order == 1">
-      ASC
+    <if test="price == 1">
+      ORDER BY stock.price ASC
     </if>
-    <if test="order == 2">
-      DESC
+    <if test="price == 2">
+      ORDER BY stock.price DESC
+    </if>
+    <if test="size == 1">
+      ORDER BY trade.size ASC
+    </if>
+    <if test="size == 2">
+      ORDER BY trade.size DESC
+    </if>
+    <if test="nationalUsd == 1">
+      ORDER BY stock.nationalUsd ASC
+    </if>
+    <if test="nationalUsd == 2">
+      ORDER BY stock.nationalUsd DESC
+    </if>
+    <if test="date == 1">
+      ORDER BY trade.trade_date ASC
+    </if>
+    <if test="date == 2">
+      ORDER BY trade.trade_date DESC
     </if>
   </select>
   <select id="countAll" parameterType="com.example.eurekaservicesupport.query.TradeQuery" resultType="java.lang.Integer">

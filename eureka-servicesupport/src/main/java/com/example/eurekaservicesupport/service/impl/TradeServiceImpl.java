@@ -52,6 +52,10 @@ public class TradeServiceImpl implements TradeService {
             SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
             tradeQuery.setStartTime(sdf.format(dateFrom));
             tradeQuery.setEndTime(sdf.format(dateTo));
+            if("".equals((String)queryInfo.get("fre"))){
+                tradeQuery.setStartTime(null);
+                tradeQuery.setEndTime(null);
+            }
         }
         if(queryInfo.containsKey("pageSize") & queryInfo.containsKey("currentPage")){
             Integer pageSize = Integer.parseInt((String)queryInfo.get("pageSize"));
@@ -61,32 +65,98 @@ public class TradeServiceImpl implements TradeService {
             tradeQuery.setStartIndex(startIndex);
         }
 
-        // 排序
-        if(queryInfo.containsKey("order")){
-            int order = (Integer)queryInfo.get("order");
-            tradeQuery.setOrder(order);
-        }
-
         // 客户名称
         if(queryInfo.containsKey("clientName")){
             String clientName = (String)queryInfo.get("clientName");
+            if ("".equals(clientName)){
+                clientName = null;
+            }
             tradeQuery.setClientName(clientName);
         }
 
         // 股票名称
         if(queryInfo.containsKey("ticker")){
             String ticker = (String)queryInfo.get("ticker");
+            if ("".equals(ticker)){
+                ticker = null;
+            }
+            tradeQuery.setTicker(ticker);
+        }
+
+        // 币种
+        if(queryInfo.containsKey("currency")){
+            String currency = (String)queryInfo.get("currency");
+            if ("".equals(currency)){
+                currency = null;
+            }
+            tradeQuery.setCurrency(currency);
         }
 
         // 股票代号
         if(queryInfo.containsKey("ric")){
             String ric = (String)queryInfo.get("ric");
+            if ("".equals(ric)){
+                ric = null;
+            }
+            tradeQuery.setRic(ric);
         }
 
         // 交易类型：买/卖
         if(queryInfo.containsKey("clientSide")){
             String clientSide = (String)queryInfo.get("clientSide");
+            if ("".equals(clientSide)){
+                clientSide = null;
+            }
             tradeQuery.setClientSide(clientSide);
+        }
+
+        // 交易类型：HT/PT
+        if(queryInfo.containsKey("tradeType")){
+            String tradeType = (String)queryInfo.get("tradeType");
+            if ("".equals(tradeType)){
+                tradeType = null;
+            }
+            tradeQuery.setTradeType(tradeType);
+        }
+
+        // 按价格排序
+        if(queryInfo.containsKey("price")){
+            String price = (String)queryInfo.get("price");
+            if ("".equals(price)){
+                tradeQuery.setPageSize(null);
+            } else{
+                tradeQuery.setPrice(Integer.parseInt(price));
+            }
+        }
+
+        // 按数量排序
+        if(queryInfo.containsKey("size")){
+            String size = (String)queryInfo.get("size");
+            if ("".equals(size)){
+                tradeQuery.setSize(null);
+            } else{
+                tradeQuery.setPrice(Integer.parseInt(size));
+            }  
+        }
+
+        // 按美金排序
+        if(queryInfo.containsKey("nationalUsd")){
+            String nationalUsd = (String)queryInfo.get("nationalUsd");
+            if ("".equals(nationalUsd)){
+                tradeQuery.setNationalUsd(null);
+            } else{
+                tradeQuery.setPrice(Integer.parseInt(nationalUsd));
+            }  
+        }
+
+        // 按日期排序
+        if(queryInfo.containsKey("date")){
+            String date = (String)queryInfo.get("date");
+            if ("".equals(date)){
+                tradeQuery.setDate(null);
+            } else{
+                tradeQuery.setPrice(Integer.parseInt(date));
+            }  
         }
 
         List<Map<String, Object>> tradesByTime = tradeMapper.selectALL(tradeQuery);

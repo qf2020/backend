@@ -3,6 +3,14 @@ package com.example.eurekaservicesupport.query;
 public class TradeQuery {
     private Integer clientId;
     private String clientName;
+    private String ticker;
+    private Integer size;
+    private Integer date;
+    private Integer price;
+    private Integer nationalUsd;
+    private String ric;
+    private String currency;
+    private String tradeType;
     private String startTime;
     private String endTime;
     private Integer order;
@@ -76,5 +84,53 @@ public class TradeQuery {
     }
     public void setPageSize(Integer pageSize) {
         this.pageSize = pageSize;
+    }
+    public String getTicker() {
+        return ticker;
+    }
+    public void setTicker(String ticker) {
+        this.ticker = ticker;
+    }
+    public String getRic() {
+        return ric;
+    }
+    public void setRic(String ric) {
+        this.ric = ric;
+    }
+    public String getCurrency() {
+        return currency;
+    }
+    public void setCurrency(String currency) {
+        this.currency = currency;
+    }
+    public String getTradeType() {
+        return tradeType;
+    }
+    public void setTradeType(String tradeType) {
+        this.tradeType = tradeType;
+    }
+    public Integer getSize() {
+        return size;
+    }
+    public void setSize(Integer size) {
+        this.size = size;
+    }
+    public Integer getPrice() {
+        return price;
+    }
+    public void setPrice(Integer price) {
+        this.price = price;
+    }
+    public Integer getNationalUsd() {
+        return nationalUsd;
+    }
+    public void setNationalUsd(Integer nationalUsd) {
+        this.nationalUsd = nationalUsd;
+    }
+    public Integer getDate() {
+        return date;
+    }
+    public void setDate(Integer date) {
+        this.date = date;
     }
 }
