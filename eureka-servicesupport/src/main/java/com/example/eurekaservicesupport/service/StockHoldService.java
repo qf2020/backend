@@ -1,10 +1,10 @@
 package com.example.eurekaservicesupport.service;
 
-import com.example.eurekaservicesupport.entity.StockHold;
 
 import java.util.List;
+import java.util.Map;
 
 
 public interface StockHoldService {
-    public List<StockHold> getStockHold(int clientId);
+    public List<Map<String, Object>> getStockHold(Integer clientId, Integer pageSize, Integer currentPage);
 }

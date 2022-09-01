@@ -4,6 +4,7 @@ import com.example.eurekaservicesupport.entity.StockHold;
 import com.example.eurekaservicesupport.entity.StockHoldKey;
 
 import java.util.List;
+import java.util.Map;
 
 
 public interface StockHoldMapper {
@@ -23,5 +24,5 @@ public interface StockHoldMapper {
 
     int sellStock(StockHold row);
 
-    List<StockHold> selectByClientId(int clientId);
+    List<Map<String, Object>> selectByClientId(Integer clientId, Integer startIndex, Integer pageSize);
 }
