@@ -4,6 +4,7 @@ package com.example.eurekaservicesupport.service.impl;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -31,7 +32,8 @@ public class TradeServiceImpl implements TradeService {
     StockHoldMapper stockHoldMapper;
 
     @Override
-    public List<Map<String, Object>> getTrade(Map<String, Object> queryInfo) {
+    public Map<String, Object> getTrade(Map<String, Object> queryInfo) {
+
         TradeQuery tradeQuery = new TradeQuery();
         // 过滤频率
         if (queryInfo.containsKey("fre")){
@@ -92,7 +94,11 @@ public class TradeServiceImpl implements TradeService {
             index++;
             map.put("key", index);
         }
-        return tradesByTime;
+
+        HashMap<String, Object> result = new HashMap<>();
+        result.put("dataList", tradesByTime);
+        result.put("total", tradeMapper.countAll(tradeQuery));
+        return result;
     }
 
     @Override

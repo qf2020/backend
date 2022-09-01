@@ -23,4 +23,6 @@ public interface TradeMapper {
     int updateByPrimaryKey(Trade row);
 
     List<Map<String, Object>> selectALL(TradeQuery tradeQuery);
+
+    int countAll(TradeQuery tradeQuery);
 }

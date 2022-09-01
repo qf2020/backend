@@ -16,8 +16,8 @@ public class TradeController {
 
     @GetMapping("/getTableData")
     @CrossOrigin
-    public List<Map<String, Object>> getTableData(@RequestParam(required = false) Map<String, Object> queryInfo){
-        List<Map<String, Object>> trades = tradeService.getTrade(queryInfo);
+    public Map<String, Object> getTableData(@RequestParam(required = false) Map<String, Object> queryInfo){
+        Map<String, Object> trades = tradeService.getTrade(queryInfo);
         return trades;
     }
 

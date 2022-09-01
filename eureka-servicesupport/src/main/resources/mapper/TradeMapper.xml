@@ -55,6 +55,34 @@
       DESC
     </if>
   </select>
+  <select id="countAll" parameterType="com.example.eurekaservicesupport.query.TradeQuery" resultType="java.lang.Integer">
+    select 
+    count(*)
+    from trade, client, stock, sales_person, issuer_sector
+    where
+    trade.client_id = client.client_id
+    and trade.stock_id = stock.stock_id
+    and trade.sales_person_id = sales_person.sales_person_id
+    and stock.issuer_sector_id = issuer_sector.issuer_sector_id
+    <if test="clientName != null">
+      and client_name = #{clientName}
+    </if>
+    <if test="clientSide != null">
+      and client_side = #{clientSide}
+    </if>
+    <if test="startTime != null and endTime != null">
+      and trade_date between #{startTime} and #{endTime}
+    </if>
+    <if test="pageSize != null and startIndex != null">
+      limit #{startIndex}, #{pageSize}
+    </if>
+    <if test="order == 1">
+      ASC
+    </if>
+    <if test="order == 2">
+      DESC
+    </if>
+  </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
     delete from trade
     where trade_id = #{tradeId,jdbcType=VARCHAR}
