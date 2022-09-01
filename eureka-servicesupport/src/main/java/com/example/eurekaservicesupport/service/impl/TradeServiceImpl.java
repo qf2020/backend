@@ -122,7 +122,7 @@ public class TradeServiceImpl implements TradeService {
         // 按价格排序
         if(queryInfo.containsKey("price")){
             String price = (String)queryInfo.get("price");
-            if ("".equals(price)){
+            if ("".equals(price) | "0".equals(price)){
                 tradeQuery.setPageSize(null);
             } else{
                 tradeQuery.setPrice(Integer.parseInt(price));
@@ -132,7 +132,7 @@ public class TradeServiceImpl implements TradeService {
         // 按数量排序
         if(queryInfo.containsKey("size")){
             String size = (String)queryInfo.get("size");
-            if ("".equals(size)){
+            if ("".equals(size) | "0".equals(size)){
                 tradeQuery.setSize(null);
             } else{
                 tradeQuery.setPrice(Integer.parseInt(size));
@@ -142,7 +142,7 @@ public class TradeServiceImpl implements TradeService {
         // 按美金排序
         if(queryInfo.containsKey("nationalUsd")){
             String nationalUsd = (String)queryInfo.get("nationalUsd");
-            if ("".equals(nationalUsd)){
+            if ("".equals(nationalUsd) | "0".equals(nationalUsd)){
                 tradeQuery.setNationalUsd(null);
             } else{
                 tradeQuery.setPrice(Integer.parseInt(nationalUsd));
@@ -152,7 +152,7 @@ public class TradeServiceImpl implements TradeService {
         // 按日期排序
         if(queryInfo.containsKey("date")){
             String date = (String)queryInfo.get("date");
-            if ("".equals(date)){
+            if ("".equals(date) | "0".equals(date)){
                 tradeQuery.setDate(null);
             } else{
                 tradeQuery.setPrice(Integer.parseInt(date));
