@@ -24,5 +24,5 @@ public interface TradeMapper {
 
     List<Map<String, Object>> selectALL(TradeQuery tradeQuery);
 
-    int countAll(TradeQuery tradeQuery);
+    Integer countAll(TradeQuery tradeQuery);
 }

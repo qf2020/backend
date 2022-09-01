@@ -1,6 +1,7 @@
 package com.example.eurekaservicesupport.service.impl;
 
 
+import java.math.BigDecimal;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
@@ -90,14 +91,45 @@ public class TradeServiceImpl implements TradeService {
 
         List<Map<String, Object>> tradesByTime = tradeMapper.selectALL(tradeQuery);
         Integer index = 0;
+        Float totalBuy = (float) 0.0;
+        Float totalSell = (float) 0.0;
+        Float netQuantity = (float) 0.0;
+        Float nationalTotalBuy = (float) 0.0;
+        Float nationalTotalSell = (float) 0.0;
+        Float nationalNetQuantity = (float) 0.0;
         for(Map<String, Object> map: tradesByTime){
             index++;
+            if("Buy".equals((String)map.get("client_side"))){
+                totalBuy += (Integer)map.get("size")
+                * ((BigDecimal)map.get("price")).floatValue();
+                nationalTotalBuy += (Integer)map.get("size")
+                * ((BigDecimal)map.get("national_usd")).floatValue();
+            };
+            if("Sell".equals((String)map.get("client_side"))){
+                totalSell += (Integer)map.get("size")
+                * ((BigDecimal)map.get("price")).floatValue();
+                nationalTotalSell += (Integer)map.get("size")
+                * ((BigDecimal)map.get("national_usd")).floatValue();
+            };
             map.put("key", index);
         }
-
+        netQuantity = totalBuy - totalSell;
+        nationalNetQuantity = nationalTotalBuy - nationalTotalSell;
         HashMap<String, Object> result = new HashMap<>();
         result.put("dataList", tradesByTime);
-        result.put("total", tradeMapper.countAll(tradeQuery));
+        Integer total = tradeMapper.countAll(tradeQuery);
+        if(total == null){
+            total = 0;
+        }
+        result.put("total", total);
+
+        result.put("totalBuy",totalBuy);
+        result.put("totalSell",totalSell);
+        result.put("netQuantity", netQuantity);
+
+        result.put("totalBuyNational",nationalTotalBuy);
+        result.put("totalSellNational",nationalTotalSell);
+        result.put("netNational", nationalNetQuantity);
         return result;
     }
 
