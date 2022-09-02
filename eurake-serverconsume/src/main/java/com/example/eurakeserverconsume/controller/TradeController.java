@@ -53,7 +53,7 @@ public class TradeController {
         if(consumeService.sellStock(tradeInfo)){
             return new SUCCESS("");
         }else{
-            return new ERROR("插入失败","");
+            return new ERROR("股票库存不足","");
         }
     }
 }

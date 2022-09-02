@@ -237,6 +237,7 @@ public class TradeServiceImpl implements TradeService {
         trade.setSize((Integer)tradeInfo.get("size"));
         trade.setSalesPersonId((Integer)tradeInfo.get("salespersonId"));
         trade.setClientSide("Buy");
+        trade.setTradeType((String)tradeInfo.get("type"));
         trade.setTradeDate(date);
 
         StockHold stockHold = new StockHold();
@@ -270,6 +271,7 @@ public class TradeServiceImpl implements TradeService {
         trade.setStockId((Integer)tradeInfo.get("stockId"));
         trade.setSize((Integer)tradeInfo.get("size"));
         trade.setSalesPersonId((Integer)tradeInfo.get("salespersonId"));
+        trade.setTradeType((String)tradeInfo.get("type"));
         trade.setClientSide("Sell");
         trade.setTradeDate(date);
 

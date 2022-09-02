@@ -21,7 +21,7 @@ public class StockHoldController {
     private ConsumeService consumeService;
 
     @GetMapping("/getStockHold")
-    @HystrixCommand(fallbackMethod = "error_code")
+    //@HystrixCommand(fallbackMethod = "error_code")
     @CrossOrigin
     public Object getStockHold(int clientId, @RequestParam(required = false) Integer pageSize, @RequestParam(required = false) Integer currentPage){
         return new SUCCESS(consumeService.getStockHold(clientId,pageSize,currentPage));

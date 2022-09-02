@@ -23,7 +23,7 @@ public interface ConsumeService {
         @PostMapping("/buyStock")
         public boolean buyStock(@RequestBody Map<String, Object> tradeInfo);
         @GetMapping("/getStockHold")
-        public List<Map<String, Object>> getStockHold(@RequestParam("clientId")int clientId, @RequestParam(required = false) Integer pageSize, @RequestParam(required = false) Integer currentPage);
+        public Map<String, Object> getStockHold(@RequestParam("clientId") int clientId, @RequestParam(required = false) Integer pageSize, @RequestParam(required = false) Integer currentPage);
 
         @PostMapping("/client/register")
         public boolean register(@RequestBody Object client);

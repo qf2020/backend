@@ -27,7 +27,7 @@
     select
     <include refid="Base_Column1_List" />
     from trade_statistic
-    where statistic_date between #{startTime} and #{endTime}
+    where statistic_date between #{startTime} and #{endTime} order by (statistic_date)
   </select>
 
   <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
